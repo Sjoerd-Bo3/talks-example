@@ -21,9 +21,9 @@ hideWaves: true
 
 ---
 layout: intro
-class: text-center 
+class: text-center
 ---
- 
+
 # Beyond Type Checking
 
 <h2 color-blue-200 pb-4> Building <span v-mark.blue.underline.delay300 color-white>Bulletproof</span> TypeScript Applications </h2>
@@ -31,7 +31,7 @@ class: text-center
 <div abs-br mx-10 my-12 pb-8 flex="~ col gap-2" text-right>
   <div><img src="/devworld-logo.png" class="h-8 float-right"></div>
   <div text-sm opacity-75>DevWorld Conference</div>
-</div> 
+</div>
 
 <!--
 Opening (30 seconds):
@@ -144,6 +144,7 @@ Body Language:
 - Use open hand gestures when sharing experience
 - Smile when inviting connections
 -->
+
 ---
 layout: center
 class: text-center flex flex-col justify-between max-w-5xl mx-auto items-center
@@ -248,7 +249,6 @@ Body Language:
 - Show concern when discussing runtime gap
 - React to audience participation
 -->
-
 
 ---
 layout: two-cols-header
@@ -361,7 +361,6 @@ themeColor: green
   opacity: 0;
 }
 </style>
-
 
 <!--
 Introduction (20 seconds):
@@ -592,6 +591,7 @@ Stage Movement:
 - Use hands to show contrast between expectation/reality
 - Step forward when transitioning to solution
 -->
+
 ---
 layout: two-cols-header
 class: items-center
@@ -631,7 +631,6 @@ We'll focus on Zod, because it's the most popular.
   gap: 2rem !important;
 }
 </style>
-
 
 <!--
 Introduction (30 seconds):
@@ -728,7 +727,6 @@ catch (error) {
 
   </div>
 </div>
-
 
 <!--
 Zod Fundamentals (5 minutes):
@@ -851,7 +849,6 @@ Key Message:
 "These patterns work across your entire stack"
 -->
 
-
 ---
 layout: two-cols-header
 themeColor: indigo
@@ -931,7 +928,6 @@ Ecosystem Integration Notes (2 minutes):
 Key Message:
 "Zod isn't just a validation library - it's a complete type safety ecosystem"
 -->
-
 
 ---
 layout: center

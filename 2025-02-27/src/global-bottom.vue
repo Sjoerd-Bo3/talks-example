@@ -150,7 +150,7 @@ const poly3 = usePloy(3)
 
 <template>
   <div>
-    <div 
+    <div
       class="bg transform-gpu overflow-hidden pointer-events-none"
       :style="{ filter: `blur(70px) hue-rotate(${hue}deg)` }"
       aria-hidden="true"
@@ -175,11 +175,12 @@ const poly3 = usePloy(3)
       :theme="themeColor"
       class="pointer-events-none fixed bottom-0 left-0"
     />
-    <Transition>
-      <div class="absolute bottom-0 left-0 right-0 top-0 z-0 transition-all duration-1000 bg-gradient-to-b" :class="[themeClasses(themeColor).gradient, themeClasses(themeColor).fill]" />
-    </Transition>
-  </div> 
-</template> 
+    <div
+      class="absolute bottom-0 left-0 right-0 top-0 z-0 transition-all duration-1000 bg-gradient-to-b"
+      :class="[themeClasses(themeColor).gradient, themeClasses(themeColor).fill]"
+    />
+  </div>
+</template>
 
 <style scoped>
 .bg,

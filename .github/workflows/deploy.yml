@@ -3,6 +3,7 @@ name: Docker
 on:
   push:
     branches:
+      - main
       - master
 
   workflow_run:
@@ -35,4 +36,3 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/talks:latest
-

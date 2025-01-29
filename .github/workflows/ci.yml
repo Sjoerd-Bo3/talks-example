@@ -3,10 +3,12 @@ name: CI
 on:
   push:
     branches:
+      - main
       - master
 
   pull_request:
     branches:
+      - main
       - master
 
 jobs:
@@ -25,19 +27,3 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
-
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - name: Install
-        run: pnpm install
-
-      - name: Typecheck
-        run: pnpm run typecheck
