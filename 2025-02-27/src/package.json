@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "pnpm run build:slides && slidev export --per-slide --output ../../dist/2025/devworld/2025-02-27-devworld-en.pdf --timeout 30000",
+    "build:slides": "slidev build --base /2025/devworld/ --out ../../dist/2025/devworld",
+    "export": "slidev export --per-slide --output ../2025-02-27-devworld-en.pdf --timeout 30000"
+  }
+}

@@ -1,0 +1,6 @@
+*.log
+node_modules
+*-export*
+dist
+.DS_Store
+*.mp4
