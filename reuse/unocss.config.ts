@@ -1,7 +1,7 @@
+import extractorMdc from '@unocss/extractor-mdc'
 import {
   defineConfig,
 } from 'unocss'
-import extractorMdc from '@unocss/extractor-mdc'
 
 export default defineConfig({
   extractors: [

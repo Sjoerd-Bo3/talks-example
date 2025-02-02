@@ -6,6 +6,9 @@ const props = defineProps({
   layoutClass: {
     type: String,
   },
+  gridClass: {
+    type: String,
+  },
 })
 </script>
 
@@ -16,7 +19,7 @@ const props = defineProps({
         <div class="col-header">
           <slot />
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4" :class="gridClass">
           <div class="col-left">
             <slot name="left" />
           </div>

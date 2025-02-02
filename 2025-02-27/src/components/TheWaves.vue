@@ -40,7 +40,7 @@ function opacity(index: number) {
     :class="`transition-all transform-gpu duration-1000 w-full z-${index} wave-fade-in ${reverse ? 'reverse' : ''}`"
   >
     <path
-      class="transform-gpu ease-in-out"
+      class="transform-gpu ease-in-out transition-all duration-500"
       :class="`path-${reverseIndex(index)} ${classes.fill}`"
       :d="wave.d"
       :fill-opacity="opacity(index)"

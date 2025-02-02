@@ -4,6 +4,7 @@ import { computed } from 'vue'
 const props = defineProps<{
   url: string
   scale?: number
+  noClick?: boolean
 }>()
 
 const scaleInvertPercent = computed(() => `${(1 / (props.scale || 1)) * 100}%`)

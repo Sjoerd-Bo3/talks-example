@@ -1,7 +1,7 @@
 import config from '@slidev/client/uno.config'
 import { mergeConfigs } from 'unocss'
-import { themeClasses } from './utils/themeClasses'
 import { tailwindColors } from './utils/constants'
+import { themeClasses } from './utils/themeClasses'
 
 const colors: string[] = tailwindColors
   .map((key) => {

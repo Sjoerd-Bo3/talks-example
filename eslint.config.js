@@ -11,4 +11,7 @@ export default antfu({
       ],
     },
   },
+  rules: {
+    'no-new': 'off',
+  },
 })

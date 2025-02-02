@@ -16,12 +16,11 @@ function generateLocationBlocks(basePath) {
           const locationPath = `/${yearDirent.name}/${talkDirent.name}`
           const aliasPath = path.join('/usr/share/nginx/html', yearDirent.name, talkDirent.name)
 
-          locations.push(`
-    location ${locationPath} {
-        alias ${aliasPath};
-        try_files $uri $uri/ ${locationPath}/index.html;
-        index index.html;
-    }`)
+          locations.push(`location ${locationPath} {
+              alias ${aliasPath};
+              try_files $uri $uri/ ${locationPath}/index.html;
+              index index.html;
+          }`)
         }
       })
     }
@@ -36,13 +35,13 @@ server {
     listen 80;
     server_name localhost;
 
-    # Root location for the main application
-    location / {
-        root /usr/share/nginx/html;
-        try_files $uri $uri/ /index.html;
-    }
+  # Root location for the main application
+  location / {
+      root /usr/share/nginx/html;
+      try_files $uri $uri/ /index.html;
+  }
 
-    # Auto-generated location blocks
+  # Auto-generated location blocks
 ${generateLocationBlocks(path.join(path.dirname(new URL(import.meta.url).pathname), '../dist'))}
 }
 `
@@ -52,3 +51,4 @@ ${generateLocationBlocks(path.join(path.dirname(new URL(import.meta.url).pathnam
 const outputPath = path.join(process.cwd(), 'nginx.conf')
 fs.writeFileSync(outputPath, nginxConfig.trim(), 'utf8')
 console.log(`Nginx configuration file generated successfully at ${outputPath}`)
+console.log(nginxConfig)
