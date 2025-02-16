@@ -11,7 +11,7 @@ class: text-center
 themeColor: blue
 fonts:
   # basically the text
-  sans: Montserrat
+  sans: Montserrat@400,700,900
   # use with `font-serif` css class from UnoCSS
   serif: Open Sans
   # for code blocks, inline code, etc.
@@ -236,7 +236,7 @@ themeColor: green
 const user = {
   id: '123',
   name: 'Alice'
-} // ✅ Compile-time check
+} // Let's hope this is a user
 ```
 
 ```ts
@@ -377,7 +377,7 @@ return (
 
 .node {
   @apply w-24 h-24 rounded-2xl flex flex-col items-center
-         justify-center transition-all duration-300 p-2 border-2 border-gray-700 bg-gray-800/30;
+         justify-center p-2 border-2 border-gray-700 bg-gray-800/30;
 }
 
 .safe {
@@ -418,7 +418,7 @@ themeColor: green
 
 ::left::
 
-<div class="p-4 border rounded-lg bg-red-900/20" v-click>
+<div class="p-4 border rounded-lg bg-red-900/10" v-click>
   <h4 class="mb-2">Common Pain Points</h4>
   <div class="[&>div]:mt-2 text-sm opacity-75">
     <div>❌ Type coercion errors in API responses</div>
@@ -429,7 +429,7 @@ themeColor: green
   </div>
 </div>
 
-<div class="p-4 border rounded-lg bg-yellow-900/20 mt-4" v-click>
+<div class="p-4 border rounded-lg bg-yellow-900/10 mt-4" v-click>
   <h4 class="mb-2">The Cost</h4>
   <div class="[&>div]:mt-2 text-sm opacity-75">
     <div>💸 Data-related bugs are costly</div>
@@ -589,21 +589,17 @@ themeColor: blue
 # Why Choose a library that supports Standard Schema? 🎯
 
 <div class="grid grid-cols-2 gap-6 mt-6">
-  <div class="space-y-4">
-   <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
-      <div>Backed by Zod, Valibot, ArkType</div>
-    </div>
-    <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
-      <div>Growing ecosystem adoption</div>
-    </div>
+  <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
+    <div>Backed by Zod, Valibot, ArkType</div>
   </div>
-  <div class="space-y-4">
-    <div class="p-4 border rounded-lg bg-green-900/20" v-click>
-      <div>Industry standardization</div>
-    </div>
-    <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
-      <div>Shared best practices</div>
-    </div>
+  <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
+    <div>Growing ecosystem adoption</div>
+  </div>
+  <div class="p-4 border rounded-lg bg-green-900/20" v-click>
+    <div>Industry standardization</div>
+  </div>
+  <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
+    <div>Shared best practices</div>
   </div>
 </div>
 
@@ -1169,6 +1165,60 @@ Let me show you how this works in practice. I've prepared a full-stack demo appl
 -->
 
 ---
+layout: two-cols-header
+themeColor: green
+---
+
+# Developer Workflows 👩‍💻
+
+::left::
+<div class="space-y-4">
+  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
+    <div class="font-bold mb-2">Schema-First Development</div>
+  
+```ts
+// 1. Define Schema
+const todoSchema = z.object({
+  title: z.string(),
+  completed: z.boolean()
+})
+
+const updateTodoSchema = todoSchema.extend({
+  title: z.string().min(1).max(100),
+})
+
+// 2. Generate Types
+type Todo = z.infer<typeof TodoSchema>
+type UpdateTodo = z.infer<typeof UpdateTodoSchema>
+```
+
+  </div>
+</div>
+
+::right:: 
+
+<div class="space-y-4">
+  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
+    <div class="font-bold mb-2">Implement Features</div>
+
+```ts
+// 3. Implement Features
+const getTodo = (id: string) => {
+  const todo = db.getTodo(id)
+  return todoSchema.parse(todo)
+}
+
+const updateTodo = (id: string, data: UpdateTodo) => {
+  const updatedTodo = db.updateTodo(id, data)
+  return updateTodoSchema.parse(updatedTodo)
+}
+```
+
+  </div>
+</div>
+
+
+---
 layout: center
 themeColor: indigo
 ---
@@ -1226,7 +1276,7 @@ TypeScript Expert & Developer Experience Advocate
 
 ::right::
 
-<img src="/me2.jpg" rounded-full absolute top-22 right-20 w-80 h-80 object-cover />
+<img src="/me2.jpg" class="rounded-full absolute top-50% translate-y-[-50%] right-20 w-80 h-80 object-cover" />
 
 <!--
 Hi everyone, I'm Joseph Anson, I've been working with TypeScript for many years now and currently I help companies build robust TypeScript applications as a consultant at Passionate People.
@@ -1238,7 +1288,7 @@ You can find me online at josephanson.com, I'm always happy to discuss TypeScrip
 
 ---
 layout: intro
-class: text-center
+class: flex flex-col items-center text-center
 themeColor: blue
 ---
 
@@ -1274,3 +1324,4 @@ themeColor: blue
 <!--
 Thank you all for your attention today. I hope you're now equipped to build safer TypeScript applications. Remember: runtime validation is just as important as static types. The slides and demo code are available at the URL shown—scan the QR code to get started right away. Start small—maybe validate one API endpoint. Build up gradually—add validation at each trust boundary. Share your experiences with the community. Together, we can make TypeScript applications truly bulletproof. Thank you for being part of this journey. Let's connect and build safer systems together.
 -->
+

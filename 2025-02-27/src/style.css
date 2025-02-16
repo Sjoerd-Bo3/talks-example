@@ -7,6 +7,10 @@
   --slidev-code-background: #010513 !important;
 }
 
+h1 {
+  font-weight: 900 !important;
+}
+
 h6 {
   text-transform: initial !important;
   font-weight: 400 !important;
@@ -19,7 +23,7 @@ h6 {
 
 /* Transitions */
 .slidev-vclick-target {
-  transition: opacity 400ms ease;
+  transition: opacity 500ms ease;
 }
 
 .slidev-vclick-hidden {
