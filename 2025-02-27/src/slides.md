@@ -157,6 +157,75 @@ Let's look at how we got here. Our journey with type safety has three distinct p
 -->
 
 ---
+layout: two-cols-header
+themeColor: green
+---
+
+# Real-World Impact
+
+::left::
+
+<div class="p-3 border rounded-lg bg-red-900/10" v-click>
+  <h4 class="mb-2">Common Pain Points</h4>
+  <div class="grid gap-1 opacity-75">
+    <div>❌ Type coercion errors in API responses</div>
+    <div>❌ Unexpected null/undefined values</div>
+    <div>❌ Invalid enum values from external systems</div>
+    <div>❌ Unable to access data due to security restrictions</div>
+    <div>❌ Cross-site scripting (XSS) from unvalidated data </div>
+  </div>
+</div>
+
+<div class="p-3 border rounded-lg bg-yellow-900/10 mt-4" v-click>
+  <h4 class="mb-2">The Cost</h4>
+  <div class="grid gap-1 opacity-75">
+    <div>💸 Data-related bugs are costly</div>
+    <div>⏱️ Significant debugging time</div>
+    <div>😡 User experience degradation</div>
+    <div>🔒 Potential security risks</div>
+  </div>
+</div>
+
+::right::
+
+<v-click>
+
+```ts
+// Example: API Response Validation
+interface User {
+  id: string
+  email: string
+  createdAt: Date
+  role: 'ADMIN' | 'USER'
+  preferences: { theme: 'light' | 'dark' }
+}
+
+// What we receive from API
+const apiResponse: User = {
+  id: '123', // ✅
+  email: 'not-valid', // ❌ Invalid format
+  createdAt: '2024-13-45', // ❌ Invalid date
+  role: 'admin', // ❌ Wrong case
+  preferences: { theme: 'blue' } // ❌ Invalid theme
+}
+
+// Runtime errors
+apiResponse.email.includes('@') // 💥 Invalid email
+new Date(apiResponse.createdAt) // 💥 Invalid date
+apiResponse.role === 'ADMIN' // 💥 Case mismatch
+```
+
+</v-click>
+
+<!--
+These aren't just theoretical problems. Last month, a client's app was silently crashing and not showing critical information because an API returning the status of an application started running null, this was a required field and because of an api change it broke without them knowing.
+
+Each of these failures costs time and money. Best case: immediate error and quick fix. Worst case: silent data corruption.
+
+Who's had an API change break their app? Anyone here lost hours debugging an ENV issue?
+-->
+
+---
 layout: two-cols
 class: items-stretch gap-8
 themeColor: green
@@ -381,75 +450,6 @@ Firstly lets look at something I call the Trust Boundary. Inside, TypeScript pro
 Let's look at some code. Here's our safe TypeScript code—beautiful type checking, the compiler has our back. Now, outside the boundary: see these 'as' keywords? Each one is a leap of faith. We're telling TypeScript: Trust me, back to the "trust me" phase.
 
 Last month, a production bug cost the team two days of debugging—all because we trusted data across this boundary. Every 'as' in your codebase is a red flag. Each type assertion is a potential bug. And TypeScript can't help us here.
--->
-
----
-layout: two-cols-header
-themeColor: green
----
-
-# Real-World Impact
-
-::left::
-
-<div class="p-3 border rounded-lg bg-red-900/10" v-click>
-  <h4 class="mb-2">Common Pain Points</h4>
-  <div class="grid gap-1 opacity-75">
-    <div>❌ Type coercion errors in API responses</div>
-    <div>❌ Unexpected null/undefined values</div>
-    <div>❌ Invalid enum values from external systems</div>
-    <div>❌ Unable to access data due to security restrictions</div>
-    <div>❌ Cross-site scripting (XSS) from unvalidated data </div>
-  </div>
-</div>
-
-<div class="p-3 border rounded-lg bg-yellow-900/10 mt-4" v-click>
-  <h4 class="mb-2">The Cost</h4>
-  <div class="grid gap-1 opacity-75">
-    <div>💸 Data-related bugs are costly</div>
-    <div>⏱️ Significant debugging time</div>
-    <div>😡 User experience degradation</div>
-    <div>🔒 Potential security risks</div>
-  </div>
-</div>
-
-::right::
-
-<v-click>
-
-```ts
-// Example: API Response Validation
-interface User {
-  id: string
-  email: string
-  createdAt: Date
-  role: 'ADMIN' | 'USER'
-  preferences: { theme: 'light' | 'dark' }
-}
-
-// What we receive from API
-const apiResponse: User = {
-  id: '123', // ✅
-  email: 'not-valid', // ❌ Invalid format
-  createdAt: '2024-13-45', // ❌ Invalid date
-  role: 'admin', // ❌ Wrong case
-  preferences: { theme: 'blue' } // ❌ Invalid theme
-}
-
-// Runtime errors
-apiResponse.email.includes('@') // 💥 Invalid email
-new Date(apiResponse.createdAt) // 💥 Invalid date
-apiResponse.role === 'ADMIN' // 💥 Case mismatch
-```
-
-</v-click>
-
-<!--
-These aren't just theoretical problems. Last month, a client's app was silently crashing and not showing critical information because an API returning the status of an application started running null, this was a required field and because of an api change it broke without them knowing.
-
-Each of these failures costs time and money. Best case: immediate error and quick fix. Worst case: silent data corruption.
-
-Who's had an API change break their app? Anyone here lost hours debugging an ENV issue?
 -->
 
 ---
