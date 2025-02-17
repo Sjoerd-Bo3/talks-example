@@ -21,16 +21,17 @@ hideWaves: true
 
 ---
 layout: intro
-class: text-center
 ---
 
-# Beyond Type Checking
+<div class="relative pb-8">
+  <h1 class="!text-8xl !leading-23 !mb-6"> Beyond Type Checking </h1>
 
-<h2 color-blue-200 pb-4> Building <span v-mark.blue.underline.delay300 color-white>Bulletproof</span> TypeScript Applications </h2>
+  <h2 color-blue-200 pb-4> Building <span v-mark.blue.highlight.delay300 color-white>Bulletproof</span> TypeScript Applications </h2>
 
-<div abs-br mx-10 my-12 pb-8 flex="~ col gap-2" text-right>
-  <div><img src="/devworld-logo.png" class="h-8 float-right"></div>
-  <div text-sm opacity-75>DevWorld Conference 2025</div>
+  <div class="absolute top-[100%] left-0">
+    <div><img src="/devworld-logo.png" class="h-12 pb-2"></div>
+    <div text-sm opacity-75>DevWorld Conference 2025</div>
+  </div>
 </div>
 
 <!--
@@ -53,25 +54,25 @@ themeColor: blue
   <div v-click class="p-4 border rounded-lg bg-yellow-900/20">
     <div i-ph:warning-circle-duotone class="text-4xl mb-2 mx-auto" />
     <div class="font-bold">The Problem</div>
-    <div class="text-sm opacity-75">Compile-time type safety</div>
+    <div class=" opacity-75">Compile-time type safety</div>
   </div>
 
   <div v-click class="p-4 border rounded-lg bg-blue-900/20">
     <div i-logos-zod class="text-4xl mb-2 mx-auto" />
     <div class="font-bold">The Solution</div>
-    <div class="text-sm opacity-75">Runtime validation</div>
+    <div class=" opacity-75">Runtime validation</div>
   </div>
 
   <div v-click class="p-4 border rounded-lg bg-purple-900/20">
     <div i-ph:code-duotone class="text-4xl mb-2 mx-auto" />
     <div class="font-bold">Implementation</div>
-    <div class="text-sm opacity-75">Real-world examples</div>
+    <div class=" opacity-75">Real-world examples</div>
   </div>
 
   <div v-click class="p-4 border rounded-lg bg-green-900/20">
     <div i-ph:rocket-launch-duotone class="text-4xl mb-2 mx-auto" />
     <div class="font-bold">Live Demo</div>
-    <div class="text-sm opacity-75">End-to-end validation</div>
+    <div class=" opacity-75">Runtime Validation in Action</div>
   </div>
 </div>
 
@@ -82,7 +83,6 @@ I'll show how we can use schema validation can help solve these problems with re
 
 We'll finish with a live demo of end-to-end type safety in action.
 -->
-
 
 ---
 layout: center
@@ -124,7 +124,6 @@ grow: right
   </div>
 </div>
 
-
 <style>
 .timeline-item {
   @apply flex flex-col items-center transition-all duration-500;
@@ -158,35 +157,12 @@ Let's look at how we got here. Our journey with type safety has three distinct p
 -->
 
 ---
-layout: statement
----
-
-# From Blind Faith to Bulletproof Validation
-
-### Building Trust Through Runtime Validation
-
-<div class="mt-12 opacity-80">
-  Learn how to protect your TypeScript applications from runtime type errors
-</div>
-
-<!--
-Today, I want to take you on a journey - from the days of blind faith in our code to building truly bulletproof applications. We'll explore how runtime validation can transform the way we write TypeScript code and protect our applications from those sneaky type errors that slip through at runtime.
-
-I've been working with TypeScript for years, and I've seen firsthand how devastating runtime type errors can be. But I've also discovered powerful solutions that can help us build more reliable applications. That's what I'm excited to share with you today.
-
-By the end of this talk, you'll have practical strategies to protect your TypeScript applications from runtime type errors, making your code more robust and your development process more confident.
--->
-
-
----
-layout: two-cols-header
+layout: two-cols
 class: items-stretch gap-8
 themeColor: green
 ---
 
-# The Trust Boundary
-
-::left::
+<h1 class="!mb-0">The Trust Boundary</h1>
 
 <div class="system-architecture">
   <div class="node frontend safe" v-click>
@@ -201,7 +177,7 @@ themeColor: green
   <div class="external grid grid-cols-2 gap-4">
     <div class="node api danger" v-click>
       <div i-ph:warning-circle-duotone class="text-2xl icon" />
-      <div class="node-label">API / <br> 3rd Party API</div>
+      <div class="node-label">API</div>
     </div>
     <div class="node db danger" v-click>
       <div i-ph:database-duotone class="text-2xl icon" />
@@ -231,7 +207,7 @@ themeColor: green
 <div class="absolute top-10 left-115" v-click="1">
 
 ````md magic-move {at: 2}
-```js 
+```js
 // JavaScript's "Trust Me" Era
 const user = {
   id: '123',
@@ -337,7 +313,7 @@ const file = fs.readFileSync('user.json') // 😰
 const config = JSON.parse(file) as Config // 😰
 ```
 
-```ts 
+```ts
 // TypeScript's Compile-Time Safety
 interface User {
   id: string
@@ -371,8 +347,7 @@ return (
 
 <style>
 .system-architecture {
-  @apply relative h-full w-full;
-  min-height: 300px;
+  @apply relative h-full w-full mt--2;
 }
 
 .node {
@@ -392,8 +367,8 @@ return (
   @apply mt-1 text-xs text-center;
 }
 
-.frontend { position: absolute; left: 7%; top: 20% }
-.external { position: absolute; left: 40%; top: 20% }
+.frontend { position: absolute; left: 7%; top: 60px }
+.external { position: absolute; left: 40%; top: 60px }
 
 .trust-boundary {
   @apply absolute left-[2px] text-center top-[26px] h-[150px] w-[150px] rounded-xl p-2 text-sm text-yellow-400 bg-yellow-50/10;
@@ -410,7 +385,6 @@ Last month, a production bug cost the team two days of debugging—all because w
 
 ---
 layout: two-cols-header
-class: items-stretch gap-8
 themeColor: green
 ---
 
@@ -418,9 +392,9 @@ themeColor: green
 
 ::left::
 
-<div class="p-4 border rounded-lg bg-red-900/10" v-click>
+<div class="p-3 border rounded-lg bg-red-900/10" v-click>
   <h4 class="mb-2">Common Pain Points</h4>
-  <div class="[&>div]:mt-2 text-sm opacity-75">
+  <div class="grid gap-1 opacity-75">
     <div>❌ Type coercion errors in API responses</div>
     <div>❌ Unexpected null/undefined values</div>
     <div>❌ Invalid enum values from external systems</div>
@@ -429,9 +403,9 @@ themeColor: green
   </div>
 </div>
 
-<div class="p-4 border rounded-lg bg-yellow-900/10 mt-4" v-click>
+<div class="p-3 border rounded-lg bg-yellow-900/10 mt-4" v-click>
   <h4 class="mb-2">The Cost</h4>
-  <div class="[&>div]:mt-2 text-sm opacity-75">
+  <div class="grid gap-1 opacity-75">
     <div>💸 Data-related bugs are costly</div>
     <div>⏱️ Significant debugging time</div>
     <div>😡 User experience degradation</div>
@@ -446,21 +420,21 @@ themeColor: green
 ```ts
 // Example: API Response Validation
 interface User {
-  id: string;
-  email: string;
-  createdAt: Date;
-  role: 'ADMIN' | 'USER';
-  preferences: { theme: 'light' | 'dark' };
+  id: string
+  email: string
+  createdAt: Date
+  role: 'ADMIN' | 'USER'
+  preferences: { theme: 'light' | 'dark' }
 }
 
 // What we receive from API
-const apiResponse = {
+const apiResponse: User = {
   id: '123', // ✅
   email: 'not-valid', // ❌ Invalid format
   createdAt: '2024-13-45', // ❌ Invalid date
   role: 'admin', // ❌ Wrong case
   preferences: { theme: 'blue' } // ❌ Invalid theme
-} as User // 🚨 Type assertion!
+}
 
 // Runtime errors
 apiResponse.email.includes('@') // 💥 Invalid email
@@ -479,11 +453,14 @@ Who's had an API change break their app? Anyone here lost hours debugging an ENV
 -->
 
 ---
-layout: center
 themeColor: green
+layout: two-cols-narrow
+layoutClass: items-center
 ---
 
 # The Runtime Validation Gap
+
+::right::
 
 ````md magic-move
 ```ts
@@ -516,7 +493,7 @@ interface LoanStatusResponse {
 }
 
 // What you get
-const response = {
+const response: LoanStatusResponse = {
   id: '12345',
   loanStatus: null, // 😱 Should be an object!
   total: '0', // 😱 Shouldn't be zero!
@@ -536,42 +513,50 @@ But there's a solution to solve this problem. We can make these boundaries safe.
 -->
 
 ---
+layout: statement
+themeColor: green
+---
+
+<h1> From Blind Faith to  <span v-mark.green.highlight.delay600="1" color-white> Bulletproof Validation </span> </h1>
+
+<h2> Building Trust Through <span v-mark.green.underline.delay2000="1" color-white>Runtime Validation </span> </h2>
+
+<!--
+Today, I want to take you on a journey - from the days of blind faith in our code to building truly bulletproof applications. We'll explore how runtime validation can transform the way we write TypeScript code and protect our applications from those sneaky type errors that slip through at runtime.
+
+I've been working with TypeScript for years, and I've seen firsthand how devastating runtime type errors can be. But I've also discovered powerful solutions that can help us build more reliable applications. That's what I'm excited to share with you today.
+
+By the end of this talk, you'll have practical strategies to protect your TypeScript applications from runtime type errors, making your code more robust and your development process more confident.
+-->
+
+---
 layout: iframe-right
 url: https://standardschema.dev/
-themeColor: blue
+themeColor: indigo
 scale: 0.7
 ---
 
 # What's Out There?
 
-<div class="space-y-4"> 
+<div class="space-y-4">
   <div class="text-lg font-bold mb-4">Schema Validation Libraries</div>
   <div class="grid grid-cols-2 gap-4">
     <v-clicks>
-      <div class="p-3 border rounded-lg flex items-center gap-2">
-        <img src="/joi.png" class="h-6 w-6" />
-        <div>Joi</div>
-      </div>
-      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 5 ? 'border-green-500 bg-green-500/10' : ''">
-        <img src="/valibot.png" class="h-8 w-8" />
-        <div>Valibot</div>
-      </div>
-      <div class="p-3 border rounded-lg flex items-center gap-2">
-        <div i-logos-yup class="text-2xl" />
-        <div>Yup</div>
-      </div>
-      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 5 ? 'border-green-500 bg-green-500/10' : ''">
+      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 3 ? 'border-green-500 bg-green-500/10' : ''">
         <div i-logos-zod class="text-2xl" />
         <div>Zod</div>
       </div>
-      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 5 ? 'border-green-500 bg-green-500/10' : ''">
+      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 3 ? 'border-green-500 bg-green-500/10' : ''">
+        <img src="/valibot.png" class="h-8 w-8" />
+        <div>Valibot</div>
+      </div>
+      <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 3 ? 'border-green-500 bg-green-500/10' : ''">
         <img src="/arktype.svg" class="h-6 w-6" />
         <div>Arktype</div>
       </div>
     </v-clicks>
-  </div> 
+  </div>
 </div>
-
 
 <!--
 Let's talk solutions. There are several great validation libraries out there, however our focus today will be Zod.
@@ -583,23 +568,27 @@ Recently, went live with Zod in a large enterprise app—it caught 37 type misma
 
 ---
 layout: center
-themeColor: blue
+themeColor: indigo
 ---
 
-# Why Choose a library that supports Standard Schema? 🎯
+# [What is]{.color-indigo-200} Standard Schema?
 
 <div class="grid grid-cols-2 gap-6 mt-6">
   <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
-    <div>Backed by Zod, Valibot, ArkType</div>
+    <div class="font-bold mb-1">Collaborative Initiative</div>
+    <div class="opacity-75">Created through collaboration between Zod, Valibot, and ArkType teams</div>
   </div>
   <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
-    <div>Growing ecosystem adoption</div>
+    <div class="font-bold mb-1">Ecosystem Integration</div>
+    <div class="opacity-75">Designed for seamless adoption across frameworks and tools</div>
   </div>
   <div class="p-4 border rounded-lg bg-green-900/20" v-click>
-    <div>Industry standardization</div>
+    <div class="font-bold mb-1">Universal Standard</div>
+    <div class="opacity-75">Unified approach to schema validation across the JavaScript ecosystem</div>
   </div>
   <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
-    <div>Shared best practices</div>
+    <div class="font-bold mb-1">Community-Driven</div>
+    <div class="opacity-75">Evolving best practices shaped by real-world implementation</div>
   </div>
 </div>
 
@@ -613,18 +602,42 @@ The community aspect is crucial - as adoption grows, we're seeing more shared to
 Framework creators are also taking notice, with many building Standard Schema support into their tools. This means better integration and a more consistent development experience across the ecosystem.
 -->
 
-
 ---
-layout: center
+themeColor: indigo
+layout: two-cols-narrow
+layoutClass: items-center
 ---
 
-# Schema Validation: Why Zod?
+# Schema Validation {.text-indigo-200}
+# Why Zod?
 
-- **Popular Choice**: Most widely adopted in the TypeScript ecosystem
-- **Type Safety**: Seamless TypeScript integration
-- **Developer Experience**: Intuitive API and excellent documentation
-- **Performance**: Optimized for runtime validation
-- **Ecosystem**: Rich set of utilities and community support
+::right::
+<div class="grid gap-4">
+  <div class="flex items-center gap-2">
+    <div i-ph:star-duotone class="text-xl text-yellow-400" />
+    <div><strong>Popular Choice:</strong> Most widely adopted in the TypeScript ecosystem</div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <div i-ph:shield-check-duotone class="text-xl text-green-400" />
+    <div><strong>Type Safety:</strong> Seamless TypeScript integration</div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <div i-ph:code-duotone class="text-xl text-blue-400" />
+    <div><strong>Developer Experience:</strong> Intuitive API and excellent documentation</div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <div i-ph:lightning-duotone class="text-xl text-purple-400" />
+    <div><strong>Performance:</strong> Optimized for runtime validation</div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <div i-ph:users-duotone class="text-xl text-orange-400" />
+    <div><strong>Ecosystem:</strong> Rich set of utilities and community support</div>
+  </div>
+</div>
 
 <!--
 I'm not saying you should use Zod, however it is the most widely adopted in the TypeScript ecosystem. I'm saying you should use a library that supports Standard Schema.
@@ -637,7 +650,7 @@ themeColor: indigo
 layout: two-cols-header
 ---
 
-# Schema Fundamentals 🛡️
+# Schema Fundamentals
 
 ::left::
 
@@ -743,14 +756,14 @@ type Product = z.infer<typeof ProductSchema>
 
 ::right::
 
-<div v-click>
+<div v-click class="mb-4">
 
 ```ts
 // Runtime Validation - No thrown error
 const result = ProductSchema.safeParse(data)
 if (result.success) {
   // Success
-  console.log(result.data) // type Product
+  console.log(result.data) // Type Product
 }
 else {
   // Detailed error reporting
@@ -765,8 +778,8 @@ else {
 ```ts
 // Runtime Validation - Throws error
 try {
-  const result = ProductSchema.parse(data) // ❌ Error
-  console.log(result) // type Product
+  const result = ProductSchema.parse(data)
+  console.log(result) // Type Product
 }
 catch (error) {
   console.error(error)
@@ -784,10 +797,68 @@ This exact scenario happened to a client—the bug made it to production, took d
 -->
 
 ---
+layout: two-cols-header
+themeColor: green
+---
+
+# Developer Workflows
+
+::left::
+<div class="space-y-4">
+  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
+    <div class="font-bold mb-2">Schema-First Development</div>
+
+```ts
+// 1. Define Schema
+const todoSchema = z.object({
+  title: z.string(),
+  completed: z.boolean()
+})
+
+// 2. Define Update Schema
+const updateTodoSchema = todoSchema.extend({
+  title: z.string().min(1).max(100),
+})
+
+// 2. Generate Types
+type Todo = z.infer<typeof TodoSchema>
+type UpdateTodo = z.infer<typeof UpdateTodoSchema>
+```
+
+  </div>
+</div>
+
+::right::
+
+<div class="space-y-4">
+  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
+    <div class="font-bold mb-2">Implement Features</div>
+
+```ts
+// 3. Implement Features
+function getTodo(id: string) {
+  const todo = fetch(`/api/todos/${id}`).then(res => res.json())
+  return todoSchema.parse(todo)
+}
+
+function updateTodo(id: string, data: UpdateTodo) {
+  const validatedData = updateTodoSchema.parse(data)
+  const updatedTodo = fetch(`/api/todos/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(validatedData)
+  }).then(res => res.json())
+  return updatedTodoSchema.parse(updatedTodo)
+}
+```
+
+  </div>
+</div>
+
+---
 themeColor: indigo
 ---
 
-# Schema Validation in Practice 🛠️
+# Schema Validation in Practice
 
 <div class="grid grid-cols-2 gap-2">
   <div v-click>
@@ -797,10 +868,9 @@ themeColor: indigo
 const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   PORT: z.number().min(1024).max(65535),
-  NODE_ENV: z.enum([
-    'development', 'production', 'test'
-  ])
+  NODE_ENV: z.enum(['development', 'production', 'test'])
 })
+
 envSchema.parse(process.env)
 ```
 
@@ -814,6 +884,7 @@ const querySchema = z.object({
   limit: z.number().min(1).max(100).default(10),
   search: z.string().optional()
 })
+
 querySchema.parse(req.query)
 ```
 
@@ -827,6 +898,7 @@ const userSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8)
 })
+
 const form = useForm({
   validationSchema: toTypedSchema(userSchema)
 })
@@ -838,15 +910,12 @@ const form = useForm({
 ```ts
 // API Response Validation
 const apiSchema = z.object({
-  data: z.array(z.object({
-    id: z.string(),
-    name: z.string(),
-  })),
-  meta: z.object({
-    page: z.number(),
-    total: z.number()
-  })
+  id: z.string(),
+  name: z.string(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 })
+
 const response = await fetch('/api/data')
 const data = apiSchema.parse(await response.json())
 ```
@@ -860,16 +929,15 @@ Let's see Zod in action.
 First, query params—often overlooked, but notice the defaults and bounds for safety. This prevents common pagination bugs. Forms are where Zod really shines—integration with Shadcn makes it seamless, and real-time validation improves UX. API responses—this is where we close the runtime gap. Notice the nested structure validation—this catches API changes immediately. These patterns work across your entire stack.
 -->
 
-
 ---
 themeColor: indigo
 gridClass: items-center flex-grow-1 pb-20
 layoutClass: flex flex-col
 ---
 
-# Ecosystem Integration 🌐
+# Ecosystem Integration
 
-<div class="grid grid-cols-2 gap-4 mt-8 text-sm">
+<div class="grid grid-cols-2 gap-4 mt-8 ">
 
   <div v-click class="p-4 border rounded-lg bg-blue-900/20">
     <div class="font-bold mb-2">API Validation</div>
@@ -907,13 +975,11 @@ layoutClass: flex flex-col
 Zod works with all major javascript frameworks—validate incoming requests before they hit your business logic. It's a single source of truth—frontend, backend, database, all in sync. Type-safe forms are a game changer—no more guessing about form data types. Generate type-safe API clients that match your API exactly—no more manual type definitions. Generate realistic mock data from your schemas—great for development and testing. Generate Zod schemas from your database—keep your types in sync with your data. Zod isn't just a validation library—it's a complete type safety ecosystem.
 -->
 
-
-
 ---
 themeColor: indigo
 ---
 
-# Tooling Support 🛠️
+# Tooling Support
 
 <div class="grid grid-cols-3 gap-4 mt-6">
   <div class="p-4 border rounded-lg" v-click>
@@ -923,32 +989,35 @@ themeColor: indigo
     </div>
     <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-unjs-h3 class="text-lg" />
+        <div i-unjs-h3 />
         H3
       </div>
       <div class="flex items-center gap-2">
-        <div i-unjs-nitro class="text-lg" />
+        <div i-unjs-nitro />
         Nitro
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-trpc class="text-lg" />
+        <div i-logos-trpc />
         tRPC
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-hono class="text-lg" />
+        <div i-logos-hono />
         Hono
       </div>
       <div class="flex items-center gap-2">
-        <div i-carbon-function class="text-lg" />
+        <div i-carbon-function />
         oRPC
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-graphql class="text-lg" />
+        <div i-logos-graphql />
         GQLoom
       </div>
       <div class="flex items-center gap-2">
-        <div i-devicon-express class="text-lg" />
+        <div i-devicon-express />
         express-zod-api
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -960,28 +1029,31 @@ themeColor: indigo
     </div>
     <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-logos-react class="text-lg" />
+        <div i-logos-react />
         TanStack Form
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-react class="text-lg" />
-        React Hook Form
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue class="text-lg" />
-        Veevalidate
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue class="text-lg" />
+        <div i-logos-vue />
         Formwerk
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-vue class="text-lg" />
+        <div i-logos-vue />
+        Veevalidate
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-logos-vue />
         Regle
       </div>
       <div class="flex items-center gap-2">
-        <div i-devicon-svelte class="text-lg" />
+        <div i-devicon-svelte />
         Superforms
+      </div>
+       <div class="flex items-center gap-2">
+        <div i-logos-react />
+        React Hook Form
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -993,24 +1065,43 @@ themeColor: indigo
     </div>
     <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-logos-qwik class="text-lg" />
+        <div i-logos-qwik />
         Qwik
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-nuxt-icon class="text-lg" />
+        <div i-logos-nuxt-icon />
         Nuxt UI
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-deno class="text-lg" />
+        <div i-logos-deno />
         Mage
       </div>
+       <div class="flex items-center gap-2">
+        <div i-simple-icons-primevue />
+        Primevue
+      </div>
       <div class="flex items-center gap-2">
-        <div i-simple-icons-shadcnui class="text-lg" />
+        <div i-simple-icons-shadcnui />
         Shadcn
       </div>
       <div class="flex items-center gap-2">
-        <div i-logos-react class="text-lg" />
+        <div i-simple-icons-shadcnui />
+        Shadcn-vue
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-logos-react />
         renoun
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-logos-vue />
+        Nuxt Content
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-devicon-astro />
+        Astro Content
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -1022,20 +1113,23 @@ themeColor: indigo
     </div>
     <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-carbon-data-base class="text-lg" />
+        <div i-carbon-data-base />
         upfetch
       </div>
       <div class="flex items-center gap-2">
-        <div i-carbon-data-base class="text-lg" />
+        <div i-carbon-data-base />
         rest-client
       </div>
       <div class="flex items-center gap-2">
-        <div i-carbon-data-base class="text-lg" />
+        <div i-carbon-data-base />
         better-fetch
       </div>
       <div class="flex items-center gap-2">
-        <div i-carbon-data-base class="text-lg" />
+        <div i-carbon-data-base />
         make-service
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -1047,20 +1141,27 @@ themeColor: indigo
     </div>
     <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-devicon-typescript class="text-lg" />
+        <div i-devicon-typescript />
         T3 Env
       </div>
       <div class="flex items-center gap-2">
-        <div i-devicon-react class="text-lg" />
+        <div i-devicon-react />
         cachified
       </div>
       <div class="flex items-center gap-2">
-        <div i-ph:upload-duotone class="text-lg" />
+        <div i-ph:upload-duotone />
         UploadThing
       </div>
       <div class="flex items-center gap-2">
-        <div i-devicon-typescript class="text-lg" />
+        <div i-devicon-typescript />
         OpenAuth
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-logos-faker />
+        zod-schema-faker
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -1072,12 +1173,19 @@ themeColor: indigo
     </div>
     <div class="space-y-2 text-sm opacity-75">
       <div class="flex items-center gap-2">
-        <div i-logos-react class="text-lg" />
+        <div i-logos-react />
         TanStack Router
       </div>
       <div class="flex items-center gap-2">
         <div i-devicon-typescript class="text-lg h-5 w-5" />
         call-api
+      </div>
+      <div class="flex items-center gap-2">
+        <div i-logos-vue />
+        Kitbag
+      </div>
+      <div class="flex items-center gap-2 opacity-50">
+       and more...
       </div>
     </div>
   </div>
@@ -1087,45 +1195,44 @@ themeColor: indigo
 The ecosystem support for standard schemas is extensive. From API frameworks like tRPC and Hono, to form libraries like TanStack Form and React Hook Form, to UI frameworks like Qwik and Nuxt UI. HTTP clients, utilities, and routing solutions all support standard schemas. This means you can use the same schema definition across your entire stack, ensuring type safety and consistency throughout your application.
 -->
 
-
 ---
-layout: center
 themeColor: yellow
 growSeed: 20
 growOpacity: 0.3
 grow: full
+class: flex justify-center items-center
 ---
 
-<div class="relative">
+<div class="relative w-full">
   <qr-code class="absolute top-0 right-0" text="https://github.com/josephanson/demo-devworld-2025" error-level="H" :scale="5" />
 
 # Live Demo 🚀
 
 <div class="flex justify-between mb-8">
   <div>
-    <h2 class="text-2xl mb-4">End-to-End Type Safety</h2>
-    <div class="text-sm opacity-75">Scan QR for demo repo</div>
+    <h2 class="text-2xl mb-4"> Runtime Schema Validation </h2>
+    <div class=" opacity-75"> Scan QR for demo repo </div>
   </div>
 </div>
 
 <div class="relative">
   <!-- Tooling diagram -->
-  <div class="flex items-start gap-12 mb-8 text-center">
+  <div class="flex items-start gap-4 mb-8 text-center">
     <div class="node">
       <div i-logos-nuxt-icon class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-sm">Nuxt</div>
+      <div class="text-xs">Nuxt</div>
     </div>
     <div class="node">
       <div i-unjs-nitro class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-sm">Nitro</div>
+      <div class="text-xs">Nitro</div>
     </div>
     <div class="node">
       <div i-logos-zod class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-sm">Zod</div>
+      <div class="text-xs">Zod</div>
     </div>
     <div class="node">
       <div i-logos-google-gemini class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-sm">Vercel AI with Browser basedGemini</div>
+      <div class="text-xs">Vercel AI with Browser basedGemini</div>
     </div>
   </div>
 
@@ -1133,15 +1240,15 @@ grow: full
   <div class="grid grid-cols-3 gap-4 mt-8">
     <div v-click class="p-4 border rounded-lg bg-blue-900/20 text-center">
       <div class="font-bold">API Validation</div>
-      <div class="text-sm opacity-75">Request/Response safety</div>
+      <div class="text-xs opacity-75">Request / Response safety with Zod</div>
     </div>
     <div v-click class="p-4 border rounded-lg bg-purple-900/20 text-center">
       <div class="font-bold">Frontend Safety</div>
-      <div class="text-sm opacity-75">Form & API client types</div>
+      <div class="text-xs opacity-75">Form validation with Zod</div>
     </div>
     <div v-click class="p-4 border rounded-lg bg-green-900/20 text-center">
-      <div class="font-bold">Schema Generation</div>
-      <div class="text-sm opacity-75">Generate Data using Schema and AI</div>
+      <div class="font-bold">Data Generation</div>
+      <div class="text-xs opacity-75">Generate Data using Zod and AI</div>
     </div>
   </div>
 
@@ -1165,60 +1272,6 @@ Let me show you how this works in practice. I've prepared a full-stack demo appl
 -->
 
 ---
-layout: two-cols-header
-themeColor: green
----
-
-# Developer Workflows 👩‍💻
-
-::left::
-<div class="space-y-4">
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div class="font-bold mb-2">Schema-First Development</div>
-  
-```ts
-// 1. Define Schema
-const todoSchema = z.object({
-  title: z.string(),
-  completed: z.boolean()
-})
-
-const updateTodoSchema = todoSchema.extend({
-  title: z.string().min(1).max(100),
-})
-
-// 2. Generate Types
-type Todo = z.infer<typeof TodoSchema>
-type UpdateTodo = z.infer<typeof UpdateTodoSchema>
-```
-
-  </div>
-</div>
-
-::right:: 
-
-<div class="space-y-4">
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div class="font-bold mb-2">Implement Features</div>
-
-```ts
-// 3. Implement Features
-const getTodo = (id: string) => {
-  const todo = db.getTodo(id)
-  return todoSchema.parse(todo)
-}
-
-const updateTodo = (id: string, data: UpdateTodo) => {
-  const updatedTodo = db.updateTodo(id, data)
-  return updateTodoSchema.parse(updatedTodo)
-}
-```
-
-  </div>
-</div>
-
-
----
 layout: center
 themeColor: indigo
 ---
@@ -1229,29 +1282,28 @@ themeColor: indigo
   <div class="p-4 border rounded-lg bg-green-900/20" v-click>
     <div class="text-green-400 text-2xl mb-2">⬇️ </div>
     <div class="font-bold">Fewer Production Bugs</div>
-    <div class="text-sm opacity-75">Runtime validation catches issues pre-deployment</div>
+    <div class=" opacity-75">Runtime validation catches issues pre-deployment</div>
   </div>
   <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
     <div class="text-blue-400 text-2xl mb-2">⏱️ </div>
     <div class="font-bold">Faster Debugging</div>
-    <div class="text-sm opacity-75">Detailed error paths & validation messages</div>
+    <div class=" opacity-75">Detailed error paths & validation messages</div>
   </div>
   <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
     <div class="text-purple-400 text-2xl mb-2">✨ </div>
     <div class="font-bold">DevEx Improvement</div>
-    <div class="text-sm opacity-75">Autocomplete & type safety across boundaries</div>
+    <div class=" opacity-75">Autocomplete & type safety across boundaries</div>
   </div>
   <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
     <div class="text-yellow-400 text-2xl mb-2">🔄 1:1</div>
     <div class="font-bold">Schema Parity</div>
-    <div class="text-sm opacity-75">Single source of truth across all layers</div>
+    <div class=" opacity-75">Single source of truth across all layers</div>
   </div>
 </div>
 
 <!--
 Let's summarize the key benefits of using Zod. Catch issues before they hit production—runtime validation catches issues pre-deployment. Pinpoint exact validation failures—detailed error paths and messages. Autocomplete and type safety everywhere—developer experience improvement. One source of truth across your stack—schema parity. One team reduced production bugs by 60%—most importantly, developer confidence skyrocketed.
 -->
-
 
 ---
 layout: two-cols
@@ -1260,46 +1312,24 @@ growSeed: 14
 themeColor: blue
 ---
 
-# Joseph Anson
+# Thank You!
 
-<div class="opacity-80">
-Senior Web Consultant at Passionate People<br>
-TypeScript Expert & Developer Experience Advocate
-</div>
-
-<div my-10 w-min flex="~ gap-1" items-center>
-  <div i-ri-user-3-line op50 ma text-xl />
-  <div><a href="https://josephanson.com" target="_blank" class="border-none! font-300">josephanson.com</a></div>
-  <div i-ri-github-line op50 ma text-xl ml4/>
-  <div><a href="https://github.com/josephanson" target="_blank" class="border-none! font-300">josephanson</a></div>
-</div>
-
-::right::
-
-<img src="/me2.jpg" class="rounded-full absolute top-50% translate-y-[-50%] right-20 w-80 h-80 object-cover" />
-
-<!--
-Hi everyone, I'm Joseph Anson, I've been working with TypeScript for many years now and currently I help companies build robust TypeScript applications as a consultant at Passionate People.
-
-Last year, I helped my team at ABN Amro launch an application with the same strategies we'll learn today. I'm here to share these battle-tested strategies with you
-
-You can find me online at josephanson.com, I'm always happy to discuss TypeScript and system architecture, if you interested in anything let's connect after the talk!
--->
-
----
-layout: intro
-class: flex flex-col items-center text-center
-themeColor: blue
----
-
-# Thank You! 🎉
-
-<div class="space-y-4 mt-8">
-  <div class="text-2xl font-bold">
+<div class="mt-8">
+  <div class="text-2xl font-bold mb-4">
     Let's Build Safer Systems Together
   </div>
 
-  <div class="flex justify-center gap-4 text-xl">
+  <div class="flex flex-col gap-4 mb-4">
+
+<div>
+  <h4 class="opacity-75">Slides & Resources</h4>
+</div>
+
+  <qr-code text="https://josephanson.com/talks/beyond-type-checking" error-level="H" :scale="2"/>
+
+  </div>
+
+  <div class="flex gap-4 text-xl mt-8 items-center">
     <a href="https://josephanson.com" target="_blank" class="border-none! flex items-center gap-2">
       <div i-ph-browser-duotone class="flex items-center justify-center" /> josephanson.com
     </a>
@@ -1309,19 +1339,12 @@ themeColor: blue
     </a>
   </div>
 
-  <div class="mt-6 text-sm opacity-75">
-    Slides & Resources:<br>
-    <a href="https://josephanson.com/talks/beyond-type-checking"
-       class="border-none! text-blue-400 hover:underline">
-      josephanson.com/talks/beyond-type-checking
-    </a>
-  </div>
-
-  <qr-code class="mx-auto" text="https://josephanson.com/talks/beyond-type-checking" error-level="H" :scale="1" />
-
 </div>
+
+::right::
+
+<img src="/me2.jpg" class="rounded-full absolute top-50% translate-y-[-50%] right-20 w-80 h-80 object-cover" />
 
 <!--
 Thank you all for your attention today. I hope you're now equipped to build safer TypeScript applications. Remember: runtime validation is just as important as static types. The slides and demo code are available at the URL shown—scan the QR code to get started right away. Start small—maybe validate one API endpoint. Build up gradually—add validation at each trust boundary. Share your experiences with the community. Together, we can make TypeScript applications truly bulletproof. Thank you for being part of this journey. Let's connect and build safer systems together.
 -->
-

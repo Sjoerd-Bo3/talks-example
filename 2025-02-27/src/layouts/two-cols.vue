@@ -11,8 +11,8 @@ const props = defineProps({
 
 <template>
   <div>
-    <div class="slidev-layout two-columns h-[552px] p-10 p-20" :class="props.class">
-      <div class="grid grid-cols-2 gap-4" :class="props.layoutClass">
+    <div class="slidev-layout two-columns" :class="props.class">
+      <div class="grid grid-cols-2 gap-8" :class="props.layoutClass">
         <div class="col-left">
           <slot />
         </div>

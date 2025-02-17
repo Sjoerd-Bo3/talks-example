@@ -13,8 +13,8 @@ const scaleInvertPercent = computed(() => `${(1 / (props.scale || 1)) * 100}%`)
 <template>
   <div class="p-10">
     <div class="flex items-center">
-      <div class="grid grid-cols-2 gap-4 w-full  h-[500px]">
-        <div class="slidev-layout p-0" v-bind="$attrs">
+      <div class="grid grid-cols-2 gap-8 w-full  h-[500px]">
+        <div v-bind="$attrs">
           <slot />
         </div>
         <div relative :style="{ width: scaleInvertPercent, height: scaleInvertPercent }">
