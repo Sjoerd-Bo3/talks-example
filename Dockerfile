@@ -1,11 +1,11 @@
 # Step 1: Build stage
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
 # Install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.4.1
 
 # Install Node.js for the config generator
 RUN apk add --no-cache nodejs
@@ -13,8 +13,8 @@ RUN apk add --no-cache nodejs
 # Copy all source files
 COPY . .
 
-# Install dependencies at root level
-RUN pnpm install -r --frozen-lockfile
+# Install dependencies at root level with force flag
+RUN pnpm install -r --force
 
 # Build
 RUN pnpm run build

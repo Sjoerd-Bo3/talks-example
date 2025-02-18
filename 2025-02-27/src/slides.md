@@ -17,6 +17,10 @@ fonts:
   # for code blocks, inline code, etc.
   mono: JetBrains Mono
 hideWaves: true
+addons:
+  - slidev-addon-rabbit
+rabbit:
+  slideNum: true
 ---
 
 ---
