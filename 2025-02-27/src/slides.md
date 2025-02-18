@@ -46,6 +46,8 @@ I'm looking forward to sharing with you today how we can make our TypeScript app
 TypeScript has revolutionized how we write JavaScript, however there's a critical gap between compile-time and runtime. Today, we'll bridge that gap together.
 -->
 
+
+
 ---
 layout: center
 class: text-center
@@ -83,10 +85,22 @@ themeColor: blue
 <!--
 In this session, we'll explore the runtime type safety challenges we face.
 
+
 I'll show how we can use schema validation can help solve these problems with real-world examples.
 
 We'll finish with a live demo of end-to-end type safety in action.
 -->
+
+---
+layout: bullets
+themeColor: blue
+---
+
+# Where Things Go Wrong
+
+- Insufficient or incorrect type definitions that silently fail  
+- Data transformations that break existing runtime assumptions  
+- Overreliance on `as` casting, bypassing real checks  
 
 ---
 layout: center
@@ -158,7 +172,25 @@ grow: right
 
 <!--
 Let's look at how we got here. Our journey with type safety has three distinct phases. First, the JavaScript era—the 'trust me' era. I honestly don't know how we were able to code production apps like this. Then came TypeScript—a game changer. Suddenly, we had compile-time safety, and those red squiggly lines became our best friends. But we discovered a problem: all our beautiful types disappear at runtime. That's our focus today—bridging this gap. Quick show of hands—who's been bitten by runtime type errors? Those hands? That's why we're here.
--->
+--> 
+
+---
+layout: two-cols-narrow
+themeColor: blue
+layoutClass: items-center
+---
+
+# Why This Matters
+
+::right::
+
+<div class="pt-4 text-left mx-auto max-w-3xl">
+  <ul class="list-disc list-outside pl-6 opacity-90">
+    <li>TypeScript's strengths only go so far: compile-time checks won't save us from runtime surprises</li>
+    <li>Misaligned data leads to unexpected crashes and wasted development time</li>
+    <li>Strengthening the runtime boundary paves the way for more resilient, secure applications</li>
+  </ul>
+</div>
 
 ---
 layout: two-cols-header
@@ -228,6 +260,17 @@ Each of these failures costs time and money. Best case: immediate error and quic
 
 Who's had an API change break their app? Anyone here lost hours debugging an ENV issue?
 -->
+
+---
+layout: bullets
+themeColor: green
+---
+
+# Typical Runtime Pitfalls
+
+- **Silent Failures:** Mismatched types that only surface under certain conditions  
+- **Edge Cases:** Null checks not enforced at runtime  
+- **Optimistic Parsing:** Blindly trusting network or file data  
 
 ---
 layout: two-cols
@@ -457,6 +500,19 @@ Last month, a production bug cost the team two days of debugging—all because w
 -->
 
 ---
+layout: bullets
+themeColor: green
+---
+
+# Breaking Down External Data Sources
+
+- **API**: Version mismatches, partial responses  
+- **Local Storage**: Stale or corrupted data  
+- **Query Params**: Unsanitized user input  
+- **Environment Variables**: Missing or malformed keys  
+- **File System**: Improperly parsed JSON or text  
+
+---
 themeColor: green
 layout: two-cols-narrow
 layoutClass: items-center
@@ -516,6 +572,19 @@ This exact scenario happened to a client—the bug made it to production, took d
 But there's a solution to solve this problem. We can make these boundaries safe. Let's see how.
 -->
 
+
+---
+layout: bullets
+themeColor: green
+---
+
+# Consequences of Runtime Mismatches
+
+- Unhandled exceptions crashing the application  
+- Downstream bugs from corrupted state  
+- Security vulnerabilities when sanitization fails  
+- Loss of trust from end users  
+
 ---
 layout: statement
 themeColor: green
@@ -525,6 +594,7 @@ themeColor: green
 
 <h2> Building Trust Through <span v-mark.green.underline.delay2000="1" color-white>Runtime Validation </span> </h2>
 
+
 <!--
 Today, I want to take you on a journey - from the days of blind faith in our code to building truly bulletproof applications. We'll explore how runtime validation can transform the way we write TypeScript code and protect our applications from those sneaky type errors that slip through at runtime.
 
@@ -532,6 +602,17 @@ I've been working with TypeScript for years, and I've seen firsthand how devasta
 
 By the end of this talk, you'll have practical strategies to protect your TypeScript applications from runtime type errors, making your code more robust and your development process more confident.
 -->
+
+---
+layout: bullets
+themeColor: green
+---
+
+# What is Runtime Validation?
+
+- **Verification** of data types, structure, and constraints at runtime  
+- **Guard Rails** for external data like APIs, DB results, user input  
+- **Early Detection** of mismatches, preventing deeper errors  
 
 ---
 layout: iframe-right
@@ -648,6 +729,18 @@ I'm not saying you should use Zod, however it is the most widely adopted in the 
 
 It's the popular choice for a reason, it's a great library. Provides type safety, good developer experience and performance.
 -->
+
+---
+layout: bullets
+themeColor: indigo
+---
+
+# Zod Essentials
+
+- **`z.object()`** for structured schemas  
+- **`z.array()`** for lists  
+- **`z.enum()`** for discrete sets  
+- **Validation** vs. **Parsing** – decide whether to throw or to handle errors  
 
 ---
 themeColor: indigo
@@ -801,6 +894,17 @@ This exact scenario happened to a client—the bug made it to production, took d
 -->
 
 ---
+layout: default
+themeColor: indigo
+---
+
+# Type Inference
+
+- Automatic: `type Product = z.infer<typeof ProductSchema>`  
+- Stays in sync: changes to the schema reflect in the type  
+- Eliminates duplication between runtime checks & TypeScript declarations  
+
+---
 layout: two-cols-header
 themeColor: green
 ---
@@ -857,6 +961,17 @@ function updateTodo(id: string, data: UpdateTodo) {
 
   </div>
 </div>
+
+---
+layout: bullets
+themeColor: green
+---
+
+# Common Validation Patterns
+
+- **Nested Objects** for joined data (e.g., user + preferences)  
+- **Union Types** for conditional checks  
+- **Refinements** to apply custom constraints  
 
 ---
 themeColor: indigo
@@ -934,6 +1049,35 @@ First, query params—often overlooked, but notice the defaults and bounds for s
 -->
 
 ---
+layout: two-cols-header
+themeColor: indigo
+---
+
+# Beyond Basics
+
+::left::
+- **Mock Generation** with libraries like `zod-schema-faker`
+- **Client Generation** ensuring typed fetch wrappers
+- **Form Builders** hooking into real-time validation
+
+::right::
+```ts
+// Example: Generate mock data
+import { faker } from '@faker-js/faker'
+import { z } from 'zod'
+import { zodFaker } from 'zod-schema-faker'
+
+const userSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  email: z.string().email()
+})
+
+// Generate a mock user
+const mockUser = zodFaker(userSchema, faker)
+```
+
+---
 themeColor: indigo
 gridClass: items-center flex-grow-1 pb-20
 layoutClass: flex flex-col
@@ -978,6 +1122,17 @@ layoutClass: flex flex-col
 <!--
 Zod works with all major javascript frameworks—validate incoming requests before they hit your business logic. It's a single source of truth—frontend, backend, database, all in sync. Type-safe forms are a game changer—no more guessing about form data types. Generate type-safe API clients that match your API exactly—no more manual type definitions. Generate realistic mock data from your schemas—great for development and testing. Generate Zod schemas from your database—keep your types in sync with your data. Zod isn't just a validation library—it's a complete type safety ecosystem.
 -->
+
+---
+layout: bullets
+themeColor: indigo
+---
+
+# Success Stories
+
+- **E-commerce**: Reduced checkout failures by validating cart data  
+- **Fintech**: Eliminated runtime mismatches with transaction details  
+- **Enterprise**: Centralized multiple microservices under a universal schema  
 
 ---
 themeColor: indigo
@@ -1200,6 +1355,17 @@ The ecosystem support for standard schemas is extensive. From API frameworks lik
 -->
 
 ---
+layout: bullets
+themeColor: indigo
+---
+
+# Tools to Accelerate Adoption
+
+- Code generators for scaffolding Zod schemas  
+- ESLint plugins to discourage overuse of `as` type casts  
+- Git hooks to ensure schemas remain up-to-date  
+
+---
 themeColor: yellow
 growSeed: 20
 growOpacity: 0.3
@@ -1276,6 +1442,17 @@ Let me show you how this works in practice. I've prepared a full-stack demo appl
 -->
 
 ---
+layout: bullets
+themeColor: yellow
+---
+
+# Demo Highlights
+
+- **Watch Zod** catch malformed data in real-time  
+- **Observe** how errors are surfaced for immediate debugging  
+- **Coordinate** with AI-based data generation under a strict schema  
+
+---
 layout: center
 themeColor: indigo
 ---
@@ -1308,6 +1485,17 @@ themeColor: indigo
 <!--
 Let's summarize the key benefits of using Zod. Catch issues before they hit production—runtime validation catches issues pre-deployment. Pinpoint exact validation failures—detailed error paths and messages. Autocomplete and type safety everywhere—developer experience improvement. One source of truth across your stack—schema parity. One team reduced production bugs by 60%—most importantly, developer confidence skyrocketed.
 -->
+
+---
+layout: bullets
+themeColor: indigo
+---
+
+# Tips for Adoption
+
+- **Incremental** approach: validate one endpoint at a time  
+- **Share** schemas as npm packages for multi-repo synergy  
+- **Automate** with lint rules and CI tests  
 
 ---
 layout: two-cols
