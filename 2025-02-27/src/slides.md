@@ -11,7 +11,7 @@ class: text-center
 themeColor: blue
 fonts:
   # basically the text
-  sans: Montserrat@400,700,900
+  sans: Barlow Semi Condensed@400,700,900
   # use with `font-serif` css class from UnoCSS
   serif: Open Sans
   # for code blocks, inline code, etc.
@@ -43,10 +43,10 @@ Hello everyone, welcome to my talk about Beyond Type Checking!
 
 I'm looking forward to sharing with you today how we can make our TypeScript applications truly bulletproof
 
-TypeScript has revolutionized how we write JavaScript, however there's a critical gap between compile-time and runtime. Today, we'll bridge that gap together.
+TypeScript has revolutionized how we write JavaScript, however there's a critical gap between compile-time and runtime. \
+
+Today, we'll bridge that gap together and learn to make [click] bulletproof applications together.
 -->
-
-
 
 ---
 layout: center
@@ -57,61 +57,67 @@ themeColor: blue
 # Today's Journey
 
 <div class="grid grid-cols-2 gap-4 mt-8 text-center">
-  <div v-click class="p-4 border rounded-lg bg-yellow-900/20">
-    <div i-ph:warning-circle-duotone class="text-4xl mb-2 mx-auto" />
-    <div class="font-bold">The Problem</div>
-    <div class=" opacity-75">Compile-time type safety</div>
-  </div>
+  <Card
+    v-click
+    center
+    color="yellow"
+    icon="i-ph:warning-circle-duotone"
+    iconCenter
+    title="The Problem"
+    subtitle="Compile-time type safety"
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div i-logos-zod class="text-4xl mb-2 mx-auto" />
-    <div class="font-bold">The Solution</div>
-    <div class=" opacity-75">Runtime validation</div>
-  </div>
+  <Card
+    v-click
+    center
+    color="blue"
+    icon="i-logos-zod"
+    iconCenter
+    title="The Solution"
+    subtitle="Runtime validation"
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-purple-900/20">
-    <div i-ph:code-duotone class="text-4xl mb-2 mx-auto" />
-    <div class="font-bold">Implementation</div>
-    <div class=" opacity-75">Real-world examples</div>
-  </div>
+  <Card
+    v-click
+    center
+    color="purple"
+    icon="i-ph:code-duotone"
+    iconCenter
+    title="Implementation"
+    subtitle="Real-world examples"
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-green-900/20">
-    <div i-ph:rocket-launch-duotone class="text-4xl mb-2 mx-auto" />
-    <div class="font-bold">Live Demo</div>
-    <div class=" opacity-75">Runtime Validation in Action</div>
-  </div>
+  <Card
+    v-click
+    center
+    color="green"
+    icon="i-ph:rocket-launch-duotone"
+    iconCenter
+    title="Live Demo"
+    subtitle="Runtime Validation in Action"
+  />
 </div>
 
 <!--
-In this session, we'll explore the runtime type safety challenges we face.
+In this session, [click] we'll explore the compile type safety issues we may face.
 
+[click] I'll show how we can use schema validation can help solve these problems.
 
-I'll show how we can use schema validation can help solve these problems with real-world examples.
+[click] I provide some real-world examples.
 
-We'll finish with a live demo of end-to-end type safety in action.
+[click] And we'll finish with a live demo of type safety in action.
 -->
-
----
-layout: bullets
-themeColor: blue
----
-
-# Where Things Go Wrong
-
-- Insufficient or incorrect type definitions that silently fail  
-- Data transformations that break existing runtime assumptions  
-- Overreliance on `as` casting, bypassing real checks  
 
 ---
 layout: center
 class: text-center flex flex-col justify-between max-w-5xl mx-auto items-center
-themeColor: green
+themeColor: cyan
 growSeed: 8
 growOpacity: 0.5
 grow: right
 ---
 
-# JS Type Safety Journey
+# [JS]{.color-cyan-200} Type Safety [Journey]{.color-cyan-200}
 
 <div class="relative flex justify-center mt-12">
   <!-- Timeline line -->
@@ -171,114 +177,114 @@ grow: right
 </style>
 
 <!--
-Let's look at how we got here. Our journey with type safety has three distinct phases. First, the JavaScript era—the 'trust me' era. I honestly don't know how we were able to code production apps like this. Then came TypeScript—a game changer. Suddenly, we had compile-time safety, and those red squiggly lines became our best friends. But we discovered a problem: all our beautiful types disappear at runtime. That's our focus today—bridging this gap. Quick show of hands—who's been bitten by runtime type errors? Those hands? That's why we're here.
---> 
+First let's look at how we got here. Our journey with type safety has three distinct phases.
 
----
-layout: two-cols-narrow
-themeColor: blue
-layoutClass: items-center
----
+[click] First, the JavaScript era—the 'trust me' era. I honestly don't know how we were able to code production apps like this.
 
-# Why This Matters
+[click] Then came TypeScript—a game changer. Suddenly, we had compile-time safety, and those red squiggly lines became our best friends.
 
-::right::
+[click] But we discovered a problem: all our beautiful types disappear at runtime. That's our focus today—bridging this gap.
 
-<div class="pt-4 text-left mx-auto max-w-3xl">
-  <ul class="list-disc list-outside pl-6 opacity-90">
-    <li>TypeScript's strengths only go so far: compile-time checks won't save us from runtime surprises</li>
-    <li>Misaligned data leads to unexpected crashes and wasted development time</li>
-    <li>Strengthening the runtime boundary paves the way for more resilient, secure applications</li>
-  </ul>
-</div>
-
----
-layout: two-cols-header
-themeColor: green
----
-
-# Real-World Impact
-
-::left::
-
-<div class="p-3 border rounded-lg bg-red-900/10" v-click>
-  <h4 class="mb-2">Common Pain Points</h4>
-  <div class="grid gap-1 opacity-75">
-    <div>❌ Type coercion errors in API responses</div>
-    <div>❌ Unexpected null/undefined values</div>
-    <div>❌ Invalid enum values from external systems</div>
-    <div>❌ Unable to access data due to security restrictions</div>
-    <div>❌ Cross-site scripting (XSS) from unvalidated data </div>
-  </div>
-</div>
-
-<div class="p-3 border rounded-lg bg-yellow-900/10 mt-4" v-click>
-  <h4 class="mb-2">The Cost</h4>
-  <div class="grid gap-1 opacity-75">
-    <div>💸 Data-related bugs are costly</div>
-    <div>⏱️ Significant debugging time</div>
-    <div>😡 User experience degradation</div>
-    <div>🔒 Potential security risks</div>
-  </div>
-</div>
-
-::right::
-
-<v-click>
-
-```ts
-// Example: API Response Validation
-interface User {
-  id: string
-  email: string
-  createdAt: Date
-  role: 'ADMIN' | 'USER'
-  preferences: { theme: 'light' | 'dark' }
-}
-
-// What we receive from API
-const apiResponse: User = {
-  id: '123', // ✅
-  email: 'not-valid', // ❌ Invalid format
-  createdAt: '2024-13-45', // ❌ Invalid date
-  role: 'admin', // ❌ Wrong case
-  preferences: { theme: 'blue' } // ❌ Invalid theme
-}
-
-// Runtime errors
-apiResponse.email.includes('@') // 💥 Invalid email
-new Date(apiResponse.createdAt) // 💥 Invalid date
-apiResponse.role === 'ADMIN' // 💥 Case mismatch
-```
-
-</v-click>
-
-<!--
-These aren't just theoretical problems. Last month, a client's app was silently crashing and not showing critical information because an API returning the status of an application started running null, this was a required field and because of an api change it broke without them knowing.
-
-Each of these failures costs time and money. Best case: immediate error and quick fix. Worst case: silent data corruption.
-
-Who's had an API change break their app? Anyone here lost hours debugging an ENV issue?
+Quick show of hands—who's been bitten by runtime type errors? Those hands? That's why we're here.
 -->
 
 ---
-layout: bullets
-themeColor: green
+layout: center
+themeColor: cyan
 ---
 
-# Typical Runtime Pitfalls
+# [Where Things]{.color-cyan-200} Go Wrong
 
-- **Silent Failures:** Mismatched types that only surface under certain conditions  
-- **Edge Cases:** Null checks not enforced at runtime  
-- **Optimistic Parsing:** Blindly trusting network or file data  
+<NumberList
+  class="mt-12"
+  cols="3"
+  :features="[
+  {
+    title: 'Silent Type Failures',
+    description: 'Insufficient or incorrect type definitions that fail without warning'
+  },
+  {
+    title: 'Data Transformations',
+    description: 'Transformations that break existing runtime assumptions'
+  },
+  {
+    title: 'Type Casting',
+    description: 'Overreliance on `as` casting, bypassing real type checks'
+  }
+]" />
+
+<!--
+Let's take a look at three common situations where things can go wrong in TypeScript applications.
+
+[click] First, we have Silent Type Failures. These happen when type definitions appear correct but fail at runtime. Maybe we're missing edge cases in our type definitions, or we only have partial type coverage, which leads to uncaught errors.
+
+[click] Next, there are Data Transformations. This is when API responses don't match the types we expect, or database results come back with unexpected null values. Even JSON parsing can sometimes produce invalid data structures that break our code.
+
+[click] Finally, there's Type Casting. This is when we overuse the 'as' keyword or generics, which bypasses TypeScript's checks. We might force type assertions that mask real issues, or lose type safety through excessive casting.
+-->
+
+---
+layout: two-cols-narrow
+themeColor: cyan
+layoutClass: items-center
+---
+
+# [Why This]{.color-cyan-200} Matters
+
+::right::
+
+<div class="grid gap-4">
+ <Card
+    v-click
+    color="red"
+    title="The Illusion of Safety"
+    subtitle="Compile-time ≠ Runtime Safety"
+  >
+    <div class="opacity-75 text-sm">
+      TypeScript's types vanish at runtime, leaving critical gaps in data validation
+    </div>
+  </Card>
+
+  <Card
+    v-click
+    color="yellow"
+    title="The Cost of Assumptions"
+    subtitle="Silent Failures, Loud Consequences"
+  >
+    <div class="opacity-75 text-sm">
+      Mismatched data leads to crashes, corrupted state, and costly debugging
+    </div>
+  </Card>
+
+  <Card
+    v-click
+    color="green"
+    title="The Power of Validation"
+    subtitle="Building Trust at Every Boundary"
+  >
+    <div class="opacity-75 text-sm">
+      Runtime validation creates resilient systems that fail fast and recover quickly
+    </div>
+  </Card>
+</div>
+
+<!--
+TypeScript gives us a false sense of security. While it catches many errors at compile time, it can't protect us from runtime data issues. This gap between compile-time and runtime is where bugs thrive.
+
+Just last month, a client's production system went down because an API started returning null for a required field. The TypeScript interface said it couldn't be null, but at runtime? Crash. Two hours of downtime, thousands in lost revenue.
+
+These aren't hypotheticals - they're real problems with real costs. Runtime validation is our safety net, catching these issues before they become production fires.
+
+Who's been burned by a runtime type error? Let's make sure it doesn't happen again.
+-->
 
 ---
 layout: two-cols
 class: items-stretch gap-8
-themeColor: green
+themeColor: blue
 ---
 
-<h1 class="!mb-0">The Trust Boundary</h1>
+<h1 class="!mb-0"><span class="color-blue-200">The</span> Trust Boundary</h1>
 
 <div class="system-architecture">
   <div class="node frontend safe" v-click>
@@ -492,33 +498,32 @@ return (
 </style>
 
 <!--
-Firstly lets look at something I call the Trust Boundary. Inside, TypeScript protects us. Outside? We're making promises we can't keep. Every time you're doing one of these things you're losing trust that the application will run correctly.
+[click] Firstly lets look at something I call the Trust Boundary. Inside, TypeScript protects us. Outside? We're making promises we can't keep. Every time you're doing one of these things you're losing trust that the application will run correctly.
 
-Let's look at some code. Here's our safe TypeScript code—beautiful type checking, the compiler has our back. Now, outside the boundary: see these 'as' keywords? Each one is a leap of faith. We're telling TypeScript: Trust me, back to the "trust me" phase.
+[click] Let's look at some code. Here's our safe TypeScript code—beautiful type checking, the compiler has our back. Now, outside the boundary: see these 'as' keywords? Each one is a leap of faith. We're telling TypeScript: Trust me, back to the "trust me" phase.
 
-Last month, a production bug cost the team two days of debugging—all because we trusted data across this boundary. Every 'as' in your codebase is a red flag. Each type assertion is a potential bug. And TypeScript can't help us here.
+[click] Any api call we make can lead to a runtime error.
+
+[click] Local or Session Storage
+
+[click] Path or Query Params
+
+[click] ENV Vars
+
+[click] File System
+
+[click] Form Data
+
+[click] Any other data that comes from outside the application and crosses the trust boundary can lead to runtime errors.
 -->
 
 ---
-layout: bullets
-themeColor: green
----
-
-# Breaking Down External Data Sources
-
-- **API**: Version mismatches, partial responses  
-- **Local Storage**: Stale or corrupted data  
-- **Query Params**: Unsanitized user input  
-- **Environment Variables**: Missing or malformed keys  
-- **File System**: Improperly parsed JSON or text  
-
----
-themeColor: green
+themeColor: blue
 layout: two-cols-narrow
 layoutClass: items-center
 ---
 
-# The Runtime Validation Gap
+# [The Runtime Validation]{.color-blue-200} Gap
 
 ::right::
 
@@ -529,12 +534,11 @@ interface LoanStatusResponse {
   id: string
   loanStatus: {
     amount: number
-    currency: 'USD' | 'EUR'
+    currency: 'EUR'
     status: 'pending' | 'approved' | 'rejected'
     interestRate: number
+    total: number
   }
-  total: number
-  createdAt: Date
 }
 ```
 
@@ -544,20 +548,17 @@ interface LoanStatusResponse {
   id: string
   loanStatus: {
     amount: number
-    currency: 'USD' | 'EUR'
+    currency: 'EUR'
     status: 'pending' | 'approved' | 'rejected'
     interestRate: number
+    total: number
   }
-  total: number
-  createdAt: Date
 }
 
 // What you get
 const response: LoanStatusResponse = {
   id: '12345',
   loanStatus: null, // 😱 Should be an object!
-  total: '0', // 😱 Shouldn't be zero!
-  createdAt: '2025-01-01'
 }
 ```
 ````
@@ -565,35 +566,170 @@ const response: LoanStatusResponse = {
 <!--
 Let's see this problem in action. Here's a real-world example I encountered recently. First, look at our TypeScript interface—clean, precise, everything perfectly typed. This is what our code expects.
 
-Now, here's what actually comes from the API: IDs as numbers instead of strings, amounts as strings instead of numbers, invalid enum values, malformed dates, negative values where they should be positive.
+This is from a real application that I was building for a client which we were able to catch with runtime validation.
 
-This exact scenario happened to a client—the bug made it to production, took down their payment processing for 2 hours, and cost them thousands in lost revenue. But we can prevent all of this. With runtime validation.
+Our users were applying for a loan and we were showing them the status of their application. However suddenly for some customers the loan status was returning null, which lead to a runtime error and the users we being shown a broken page with no way to recover.
 
-But there's a solution to solve this problem. We can make these boundaries safe. Let's see how.
+We had no users reporting this issue, however because we were validating the data at runtime we were able to catch it immediately in our logs and fix it.
 -->
 
+---
+layout: two-cols
+themeColor: cyan
+---
+
+# [Real-World]{.color-cyan-200} Impact
+
+<FeatureList
+  class="mt-12"
+  clicks
+  :features="[
+    {
+      icon: 'i-ph:currency-dollar-duotone',
+      color: 'text-yellow-400',
+      title: 'Data-related bugs are costly',
+      description: 'Direct financial impact from production issues'
+    },
+    {
+      icon: 'i-ph:timer-duotone',
+      color: 'text-yellow-400',
+      title: 'Significant debugging time',
+      description: 'Hours spent tracking down type-related issues'
+    },
+    {
+      icon: 'i-ph:smiley-sad-duotone',
+      color: 'text-yellow-400',
+      title: 'User experience degradation',
+      description: 'Broken features and unexpected behavior'
+    },
+    {
+      icon: 'i-ph:lock-duotone',
+      color: 'text-yellow-400',
+      title: 'Potential security risks',
+      description: 'Vulnerabilities from incorrect data handling'
+    }
+  ]"
+/>
+
+::right::
+
+<v-click>
+
+````md magic-move
+```ts
+// Example: API Response Validation
+interface User {
+  email: string
+  createdAt: Date
+  role: 'ADMIN' | 'USER'
+  preferences: { theme: 'light' | 'dark' }
+}
+
+const response = await fetch<User>('/api/user')
+```
+
+```ts
+// Example: API Response Validation
+interface User {
+  email: string
+  createdAt: Date
+  role: 'ADMIN' | 'USER'
+  preferences: { theme: 'light' | 'dark' }
+}
+
+const response = await fetch<User>('/api/user')
+// What we receive from API
+/*
+const apiResponse: User = {
+  email: 'not-valid', // ❌ Invalid format
+  createdAt: '2024-13-45', // ❌ Invalid date
+  role: 'admin', // ❌ Wrong case
+  preferences: { theme: 'blue' } // ❌ Invalid theme
+}
+*/
+```
+
+```ts
+// Example: API Response Validation
+interface User {
+  email: string
+  createdAt: Date
+  role: 'ADMIN' | 'USER'
+  preferences: { theme: 'light' | 'dark' }
+}
+
+const response = await fetch<User>('/api/user')
+// What we receive from API
+/*
+const apiResponse: User = {
+  email: 'not-valid', // ❌ Invalid format
+  createdAt: '2024-13-45', // ❌ Invalid date
+  role: 'admin', // ❌ Wrong case
+  preferences: { theme: 'blue' } // ❌ Invalid theme
+}
+*/
+
+// Runtime errors
+apiResponse.email.includes('@') // 💥 Invalid email
+new Date(apiResponse.createdAt) // 💥 Invalid date
+apiResponse.role === 'ADMIN' // 💥 Case mismatch
+```
+````
+</v-click>
+
+<!--
+So what's the real world impact of this?
+
+...
+
+[click:5] Let's look at a real example of how TypeScript's compile-time checks can fail us at runtime. Here we have a typical API response validation scenario.
+
+ In the first example, we define a User interface with specific types - an email string, a Date object, a union type for role, and a preferences object with a theme setting. Looks good at compile time, right?
+
+But when we actually get data from the API, things go wrong. The email isn't validated, we get an invalid date string, the role casing doesn't match, and we get an unexpected theme value. TypeScript doesn't catch any of these at compile time because the types are erased at runtime.
+
+[click] In the second example, we see what happens when we try to use this data. We get runtime errors when we try to use the email, parse the date, or check the role. These are the kind of errors that can crash our application in production, even though our TypeScript code looked perfectly valid.
+
+This is a perfect illustration of why we need runtime validation - TypeScript's compile-time checks just aren't enough to protect us from bad data at runtime.
+-->
 
 ---
-layout: bullets
-themeColor: green
+layout: center
+themeColor: blue
 ---
 
-# Consequences of Runtime Mismatches
+# [Consequences of]{.color-blue-200} <br> Runtime Mismatches
 
-- Unhandled exceptions crashing the application  
-- Downstream bugs from corrupted state  
-- Security vulnerabilities when sanitization fails  
-- Loss of trust from end users  
+<NumberList
+class="mt-12"
+:cols="4"
+:features="[
+  {
+    title: 'Application Crashes',
+    description: 'Unhandled exceptions leading to system failures'
+  },
+  {
+    title: 'Data Corruption',
+    description: 'Downstream bugs from corrupted application state'
+  },
+  {
+    title: 'Security Risks',
+    description: 'Vulnerabilities when input sanitization fails'
+  },
+  {
+    title: 'User Trust',
+    description: 'Loss of confidence from unreliable behavior'
+  }
+]" />
 
 ---
 layout: statement
-themeColor: green
+themeColor: blue
 ---
 
-<h1> From Blind Faith to  <span v-mark.green.highlight.delay600="1" color-white> Bulletproof Validation </span> </h1>
+<h1> <span class="color-blue-200">From Blind Faith to</span> <br> <span v-mark.blue.highlight.delay600="1" color-white> Bulletproof Validation </span> </h1>
 
-<h2> Building Trust Through <span v-mark.green.underline.delay2000="1" color-white>Runtime Validation </span> </h2>
-
+<h2> Building Trust Through <span v-mark.blue.underline.delay2000="1" color-white>Runtime Validation </span> </h2>
 
 <!--
 Today, I want to take you on a journey - from the days of blind faith in our code to building truly bulletproof applications. We'll explore how runtime validation can transform the way we write TypeScript code and protect our applications from those sneaky type errors that slip through at runtime.
@@ -604,15 +740,33 @@ By the end of this talk, you'll have practical strategies to protect your TypeSc
 -->
 
 ---
-layout: bullets
-themeColor: green
+layout: center
+themeColor: indigo
 ---
 
-# What is Runtime Validation?
+# [What is]{.color-indigo-200} Runtime Validation?
 
-- **Verification** of data types, structure, and constraints at runtime  
-- **Guard Rails** for external data like APIs, DB results, user input  
-- **Early Detection** of mismatches, preventing deeper errors  
+<NumberList
+  class="mt-12"
+  cols="3"
+  :features="[
+  {
+    title: 'Runtime Verification',
+    description: 'Verification of data types, structure, and constraints at runtime'
+  },
+  {
+    title: 'External Guards',
+    description: 'Guard rails for external data like APIs, DB results, user input'
+  },
+  {
+    title: 'Early Warning',
+    description: 'Early detection of mismatches, preventing deeper errors'
+  }
+]" />
+
+<!--
+Let's understand what runtime validation really means. It's like having a security guard checking IDs at every entrance of your application. When data enters your system - whether from an API, user input, or database - it gets verified against your defined rules. This catches issues immediately, before they can cause problems deeper in your application. Think of it as your first line of defense against bad data.
+-->
 
 ---
 layout: iframe-right
@@ -621,10 +775,10 @@ themeColor: indigo
 scale: 0.7
 ---
 
-# What's Out There?
+# [What's]{.color-indigo-200} <br> Out There?
 
 <div class="space-y-4">
-  <div class="text-lg font-bold mb-4">Schema Validation Libraries</div>
+  <div class="text-lg font-bold mb-4">Runtime Validation Libraries</div>
   <div class="grid grid-cols-2 gap-4">
     <v-clicks>
       <div class="p-3 border rounded-lg flex items-center gap-2" :class="$slidev.nav.clicks > 3 ? 'border-green-500 bg-green-500/10' : ''">
@@ -659,22 +813,34 @@ themeColor: indigo
 # [What is]{.color-indigo-200} Standard Schema?
 
 <div class="grid grid-cols-2 gap-6 mt-6">
-  <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
-    <div class="font-bold mb-1">Collaborative Initiative</div>
-    <div class="opacity-75">Created through collaboration between Zod, Valibot, and ArkType teams</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
-    <div class="font-bold mb-1">Ecosystem Integration</div>
-    <div class="opacity-75">Designed for seamless adoption across frameworks and tools</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-green-900/20" v-click>
-    <div class="font-bold mb-1">Universal Standard</div>
-    <div class="opacity-75">Unified approach to schema validation across the JavaScript ecosystem</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
-    <div class="font-bold mb-1">Community-Driven</div>
-    <div class="opacity-75">Evolving best practices shaped by real-world implementation</div>
-  </div>
+
+  <Card
+    v-click
+    color="green"
+    title="Universal Standard"
+    subtitle="Unified approach to schema validation across the JavaScript ecosystem"
+  />
+
+  <Card
+    v-click
+    color="purple"
+    title="Collaborative Initiative"
+    subtitle="Created through collaboration between Zod, Valibot, and ArkType teams"
+  />
+
+  <Card
+    v-click
+    color="blue"
+    title="Ecosystem Integration"
+    subtitle="Designed for seamless adoption across frameworks and tools"
+  />
+
+  <Card
+    v-click
+    color="yellow"
+    title="Community-Driven"
+    subtitle="Evolving best practices shaped by real-world implementation"
+  />
 </div>
 
 <!--
@@ -697,57 +863,124 @@ layoutClass: items-center
 # Why Zod?
 
 ::right::
-<div class="grid gap-4">
-  <div class="flex items-center gap-2">
-    <div i-ph:star-duotone class="text-xl text-yellow-400" />
-    <div><strong>Popular Choice:</strong> Most widely adopted in the TypeScript ecosystem</div>
-  </div>
 
-  <div class="flex items-center gap-2">
-    <div i-ph:shield-check-duotone class="text-xl text-green-400" />
-    <div><strong>Type Safety:</strong> Seamless TypeScript integration</div>
-  </div>
-
-  <div class="flex items-center gap-2">
-    <div i-ph:code-duotone class="text-xl text-blue-400" />
-    <div><strong>Developer Experience:</strong> Intuitive API and excellent documentation</div>
-  </div>
-
-  <div class="flex items-center gap-2">
-    <div i-ph:lightning-duotone class="text-xl text-purple-400" />
-    <div><strong>Performance:</strong> Optimized for runtime validation</div>
-  </div>
-
-  <div class="flex items-center gap-2">
-    <div i-ph:users-duotone class="text-xl text-orange-400" />
-    <div><strong>Ecosystem:</strong> Rich set of utilities and community support</div>
-  </div>
-</div>
+<FeatureList
+  clicks
+ :features="[
+  {
+    icon: 'i-ph:star-duotone',
+    color: 'text-yellow-400',
+    title: 'Popular Choice',
+    description: 'Most widely adopted in the TypeScript ecosystem'
+  },
+  {
+    icon: 'i-ph:shield-check-duotone',
+    color: 'text-green-400',
+    title: 'Type Safety',
+    description: 'Seamless TypeScript integration'
+  },
+  {
+    icon: 'i-ph:code-duotone',
+    color: 'text-blue-400',
+    title: 'Developer Experience',
+    description: 'Intuitive API and excellent documentation'
+  },
+  {
+    icon: 'i-ph:lightning-duotone',
+    color: 'text-purple-400',
+    title: 'Performance',
+    description: 'Optimized for runtime validation'
+  },
+  {
+    icon: 'i-ph:users-duotone',
+    color: 'text-orange-400',
+    title: 'Ecosystem',
+    description: 'Rich set of utilities and community support'
+  }
+]" />
 
 <!--
-I'm not saying you should use Zod, however it is the most widely adopted in the TypeScript ecosystem. I'm saying you should use a library that supports Standard Schema.
-
-It's the popular choice for a reason, it's a great library. Provides type safety, good developer experience and performance.
+While there are several validation libraries available, Zod has emerged as a leader for good reasons. Its popularity isn't just about being first - it's about being comprehensive and well-designed. The seamless TypeScript integration means you get excellent IDE support and type inference. The API is intuitive enough that new team members can get started quickly. And perhaps most importantly, it's fast - validation overhead is minimal, making it suitable for production use.
 -->
 
 ---
-layout: bullets
 themeColor: indigo
+layout: center
 ---
 
-# Zod Essentials
+<div class="grid grid-cols-2 gap-12">
+<div>
 
-- **`z.object()`** for structured schemas  
-- **`z.array()`** for lists  
-- **`z.enum()`** for discrete sets  
-- **Validation** vs. **Parsing** – decide whether to throw or to handle errors  
+# [Zod]{.text-indigo-200} <br> Essentials
+
+<br>
+
+<v-clicks>
+
+- **`z.string()`** for strings
+- **`z.number()`** for numbers
+- **`z.boolean()`** for booleans
+- **`z.date()`** for dates
+- **`z.array()`** for arrays
+- **`z.enum(['car', 'bus'])`** for enums
+- **`z.object({ name: z.string() })`** for objects
+- **`.parse()`** or **`.safeParse()`** to validate data
+- **`z.infer<typeof schema>`** to get the inferred type
+
+</v-clicks>
+
+</div>
+
+<div class="grid gap-4">
+
+<Card
+  v-click
+  color="blue"
+  title="Schema Definition"
+  subtitle="Craft a schema to represent any data structure"
+/>
+
+<Card
+  v-click
+  color="green"
+  title="Validation vs. Parsing"
+  subtitle="Decide whether to throw or to handle errors"
+/>
+
+<Card
+  v-click
+  color="blue"
+  title="Type Inference"
+  subtitle="TypeScript infers the type of the validated data"
+/>
+
+<Card
+  v-click
+  color="yellow"
+  title="Error Handling"
+  subtitle="Handle errors gracefully"
+/>
+
+</div>
+</div>
+
+<!--
+Type inference is one of Zod's most powerful features. Instead of maintaining separate type definitions,
+we can derive them directly from our schemas. This means:
+
+1. No more manual type updates when schemas change
+2. Perfect alignment between runtime validation and compile-time types
+3. Reduced maintenance burden and fewer opportunities for errors
+
+This is especially valuable in larger codebases where keeping types and validation in sync can become challenging.
+-->
 
 ---
 themeColor: indigo
 layout: two-cols-header
 ---
 
-# Schema Fundamentals
+# [Validation]{.color-indigo-200} Fundamentals
 
 ::left::
 
@@ -800,7 +1033,7 @@ const ProductSchema = z.object({
     z.object({
       size: z.enum(['S', 'M', 'L']),
     })
-  )
+  ).min(1)
 })
 ```
 
@@ -821,7 +1054,7 @@ const ProductSchema = z.object({
     z.object({
       size: z.enum(['S', 'M', 'L']),
     })
-  )
+  ).min(1)
 })
 ```
 
@@ -853,35 +1086,89 @@ type Product = z.infer<typeof ProductSchema>
 
 ::right::
 
-<div v-click class="mb-4">
+<div v-click="5" class="mb-0" >
+
+````md magic-move
+```ts
+// Runtime Validation - No thrown error
+function validateProduct(data: Product) {
+}
+```
 
 ```ts
 // Runtime Validation - No thrown error
-const result = ProductSchema.safeParse(data)
-if (result.success) {
-  // Success
-  console.log(result.data) // Type Product
-}
-else {
-  // Detailed error reporting
-  console.log(result.error.format())
+function validateProduct(data: Product) {
+  const result = ProductSchema.safeParse(data)
 }
 ```
-
-</div>
-
-<div v-click>
 
 ```ts
-// Runtime Validation - Throws error
-try {
-  const result = ProductSchema.parse(data)
-  console.log(result) // Type Product
-}
-catch (error) {
-  console.error(error)
+// Runtime Validation - No thrown error
+function validateProduct(data: Product) {
+  const result = ProductSchema.safeParse(data)
+  if (!result.success) {
+    logger.error(result.error.format())
+    throw new Error('Invalid product data')
+  }
 }
 ```
+
+```ts
+// Runtime Validation - No thrown error
+function validateProduct(data: Product) {
+  const result = ProductSchema.safeParse(data)
+  if (!result.success) {
+    logger.error(result.error.format())
+    throw new Error('Invalid product data')
+  } else {
+    return result.data
+  }
+}
+```
+
+```ts
+// Runtime Validation - No thrown error
+function validateProduct(data: Product) {
+  const result = ProductSchema.safeParse(data)
+  if (!result.success) {
+    logger.error(result.error.format())
+    throw new Error('Invalid product data')
+  } else {
+    return result.data
+  }
+}
+
+// Runtime Validation - Throws error
+function validateProduct(data: Product) {
+    return ProductSchema.parse(data)  // => Type Product
+}
+```
+
+```ts
+// Runtime Validation - No thrown error
+function validateProduct(data: Product) {
+  const result = ProductSchema.safeParse(data)
+  if (!result.success) {
+    logger.error(result.error.format())
+    throw new Error('Invalid product data')
+  } else {
+    return result.data
+  }
+}
+
+// Runtime Validation - Throws error
+function validateProduct(data: Product) {
+  try {
+    return ProductSchema.parse(data)  // => Type Product
+  }
+  catch (error) {
+    if (error instanceof ZodError) {
+      logger.error(error.format())
+    }
+  }
+}
+```
+````
 
 </div>
 
@@ -894,90 +1181,47 @@ This exact scenario happened to a client—the bug made it to production, took d
 -->
 
 ---
-layout: default
+layout: center
 themeColor: indigo
 ---
 
-# Type Inference
+# [Type]{.color-indigo-200} Inference
 
-- Automatic: `type Product = z.infer<typeof ProductSchema>`  
-- Stays in sync: changes to the schema reflect in the type  
-- Eliminates duplication between runtime checks & TypeScript declarations  
+<NumberList
+  class="mt-12"
+  :cols="3"
+  :features="[
+    {
+      title: 'Automatic Type Generation',
+      description: 'Use z.infer<typeof Schema> to automatically generate TypeScript types'
+    },
+    {
+      title: 'Single Source of Truth',
+      description: 'Schema changes automatically reflect in TypeScript types, ensuring perfect sync'
+    },
+    {
+      title: 'DRY Principle',
+      description: 'Eliminate duplication between runtime validation and type declarations'
+    }
+  ]"
+/>
 
----
-layout: two-cols-header
-themeColor: green
----
+<!--
+Type inference is one of Zod's most powerful features. Instead of maintaining separate type definitions,
+we can derive them directly from our schemas. This means:
 
-# Developer Workflows
+1. No more manual type updates when schemas change
+2. Perfect alignment between runtime validation and compile-time types
+3. Reduced maintenance burden and fewer opportunities for errors
 
-::left::
-<div class="space-y-4">
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div class="font-bold mb-2">Schema-First Development</div>
-
-```ts
-// 1. Define Schema
-const todoSchema = z.object({
-  title: z.string(),
-  completed: z.boolean()
-})
-
-// 2. Define Update Schema
-const updateTodoSchema = todoSchema.extend({
-  title: z.string().min(1).max(100),
-})
-
-// 2. Generate Types
-type Todo = z.infer<typeof TodoSchema>
-type UpdateTodo = z.infer<typeof UpdateTodoSchema>
-```
-
-  </div>
-</div>
-
-::right::
-
-<div class="space-y-4">
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div class="font-bold mb-2">Implement Features</div>
-
-```ts
-// 3. Implement Features
-function getTodo(id: string) {
-  const todo = fetch(`/api/todos/${id}`).then(res => res.json())
-  return todoSchema.parse(todo)
-}
-
-function updateTodo(id: string, data: UpdateTodo) {
-  const validatedData = updateTodoSchema.parse(data)
-  const updatedTodo = fetch(`/api/todos/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(validatedData)
-  }).then(res => res.json())
-  return updatedTodoSchema.parse(updatedTodo)
-}
-```
-
-  </div>
-</div>
-
----
-layout: bullets
-themeColor: green
----
-
-# Common Validation Patterns
-
-- **Nested Objects** for joined data (e.g., user + preferences)  
-- **Union Types** for conditional checks  
-- **Refinements** to apply custom constraints  
+This is especially valuable in larger codebases where keeping types and validation in sync can become challenging.
+-->
 
 ---
 themeColor: indigo
 ---
 
-# Schema Validation in Practice
+# [Schema Validation]{.text-indigo-200} in Practice
 
 <div class="grid grid-cols-2 gap-2">
   <div v-click>
@@ -1049,23 +1293,30 @@ First, query params—often overlooked, but notice the defaults and bounds for s
 -->
 
 ---
-layout: two-cols-header
+layout: two-cols-narrow
 themeColor: indigo
 ---
 
-# Beyond Basics
+# [Beyond]{.color-indigo-200} Basics
 
-::left::
+<v-clicks>
+
 - **Mock Generation** with libraries like `zod-schema-faker`
-- **Client Generation** ensuring typed fetch wrappers
 - **Form Builders** hooking into real-time validation
+- **Validate API Responses** with `h3`
+
+</v-clicks>
 
 ::right::
+
+<v-click at="1">
+
+````md magic-move {at:2}
 ```ts
 // Example: Generate mock data
 import { faker } from '@faker-js/faker'
 import { z } from 'zod'
-import { zodFaker } from 'zod-schema-faker'
+import { fake } from 'zod-schema-faker'
 
 const userSchema = z.object({
   id: z.string().uuid(),
@@ -1074,8 +1325,92 @@ const userSchema = z.object({
 })
 
 // Generate a mock user
-const mockUser = zodFaker(userSchema, faker)
+const mockUser = fake(userSchema)
 ```
+
+```vue
+<!-- Example: Form Validation with Veevalidate -->
+<script setup>
+import { z } from 'zod'
+import { toTypedSchema } from '@vee-validate/zod'
+
+const userSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  email: z.string().email()
+})
+
+const form = useForm({
+  validationSchema: toTypedSchema(userSchema)
+})
+
+const [name, nameAttrs] = defineField('name');
+const [email, emailAttrs] = defineField('email');
+</script>
+
+<template>
+  <input v-model="name" v-bind="nameAttrs" />
+  <div>{{ errors.name }}</div>
+  <input v-model="email" v-bind="emailAttrs" />
+  <div>{{ errors.email }}</div>
+</template>
+
+```
+
+```ts
+// Example: Validate API Responses with Nitro
+import { z } from 'zod'
+import { defineEventHandler, readValidatedBody } from "h3";
+
+const userSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  email: z.string().email()
+})
+
+return default defineEventHandler(async (event) => {
+  const query = await readValidatedBody(event, userSchema.parse);
+
+  return `Hello ${query.name}! You are ${query.age} years old.`;
+})
+```
+````
+
+</v-click>
+
+<!--
+Let's explore how Zod integrates with various tools and frameworks in the ecosystem:
+
+1. API Validation:
+   - Seamlessly validates incoming requests in any Node.js framework
+   - Provides type-safe request/response handling
+   - Catches invalid data at the API boundary
+
+2. Frontend Forms:
+   - Integrates with popular form libraries
+   - Provides real-time validation feedback
+   - Ensures type safety from backend to frontend
+
+3. Mock Data:
+   - Generate realistic test data
+   - Maintain data consistency in tests
+   - Speed up development
+
+4. Single Source of Truth:
+   - Define schemas once, use everywhere
+   - Generate types automatically
+   - Maintain consistency across your stack
+
+5. API Clients:
+   - Generate type-safe API clients
+   - Automatic request/response validation
+   - Better developer experience
+
+6. AI Integration:
+   - Use schemas to structure AI-generated data
+   - Ensure AI outputs match your types
+   - Combine validation with AI capabilities
+-->
 
 ---
 themeColor: indigo
@@ -1085,38 +1420,48 @@ layoutClass: flex flex-col
 
 # Ecosystem Integration
 
-<div class="grid grid-cols-2 gap-4 mt-8 ">
+<div class="grid grid-cols-2 gap-4 mt-8">
+  <Card
+    v-click
+    color="blue"
+    title="API Validation"
+    subtitle="Seamless integration with frameworks like Express, Fastify, Nitro to validate incoming requests."
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-blue-900/20">
-    <div class="font-bold mb-2">API Validation</div>
-    <div class="opacity-75">Seamless integration with frameworks like Express, Fastify, Nitro to validate incoming requests.</div>
-  </div>
+  <Card
+    v-click
+    color="purple"
+    title="Frontend Safety"
+    subtitle="Type-safe forms with React Hook Form, FormKit, Veevalidate, Shadcn, etc."
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-purple-900/20">
-    <div class="font-bold mb-2">Frontend Safety</div>
-    <div class="opacity-75">Type-safe forms with React Hook Form, FormKit, Veevalidate, Shadcn, etc.</div>
-  </div>
+  <Card
+    v-click
+    color="green"
+    title="Single Source of Truth"
+    subtitle="Zod schemas can be used in the frontend, backend, and generated from your database schema."
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-green-900/20">
-    <div class="font-bold mb-2">Single Source of Truth</div>
-    <div class="opacity-75">Zod schemas can be used in the frontend, backend, and generated from your database schema.</div>
-  </div>
+  <Card
+    v-click
+    color="yellow"
+    title="Type-safe API Clients"
+    subtitle="Auto-generate type-safe clients for your API with Zod."
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-yellow-900/20">
-    <div class="font-bold mb-2">Type-safe API Clients</div>
-    <div class="opacity-75">Auto-generate type-safe clients for your API with Zod.</div>
-  </div>
+  <Card
+    v-click
+    color="red"
+    title="Generate Mocks from Schemas"
+    subtitle="Generate realistic mock data for testing and development."
+  />
 
-  <div v-click class="p-4 border rounded-lg bg-red-900/20">
-    <div class="font-bold mb-2">Generate Mocks from Schemas</div>
-    <div class="opacity-75">Generate realistic mock data for testing and development.</div>
-  </div>
-
-  <div v-click class="p-4 border rounded-lg bg-indigo-900/20">
-    <div class="font-bold mb-2">AI Data Generation</div>
-    <div class="opacity-75">Use schemas to generate structured data with AI.</div>
-  </div>
-
+  <Card
+    v-click
+    color="indigo"
+    title="AI Data Generation"
+    subtitle="Use schemas to generate structured data with AI."
+  />
 </div>
 
 <!--
@@ -1124,246 +1469,80 @@ Zod works with all major javascript frameworks—validate incoming requests befo
 -->
 
 ---
-layout: bullets
 themeColor: indigo
 ---
 
-# Success Stories
-
-- **E-commerce**: Reduced checkout failures by validating cart data  
-- **Fintech**: Eliminated runtime mismatches with transaction details  
-- **Enterprise**: Centralized multiple microservices under a universal schema  
-
----
-themeColor: indigo
----
-
-# Tooling Support
+# [Tooling]{.color-indigo-200} Support
 
 <div class="grid grid-cols-3 gap-4 mt-6">
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-carbon-api class="text-xl" />
-      API Frameworks
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-unjs-h3 />
-        H3
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-unjs-nitro />
-        Nitro
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-trpc />
-        tRPC
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-hono />
-        Hono
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-carbon-function />
-        oRPC
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-graphql />
-        GQLoom
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-express />
-        express-zod-api
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card icon="i-carbon-api" color="blue" title="API Frameworks" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-unjs-h3', label: 'H3' },
+      { icon: 'i-unjs-nitro', label: 'Nitro' },
+      { icon: 'i-logos-trpc', label: 'tRPC' },
+      { icon: 'i-logos-hono', label: 'Hono' },
+      { icon: 'i-carbon-function', label: 'oRPC' },
+      { icon: 'i-logos-graphql', label: 'GQLoom' },
+      { icon: 'i-devicon-express', label: 'express-zod-api' },
+    ]" />
+  </Card>
 
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-carbon-document class="text-xl" />
-      Form Libraries
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-logos-react />
-        TanStack Form
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue />
-        Formwerk
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue />
-        Veevalidate
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue />
-        Regle
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-svelte />
-        Superforms
-      </div>
-       <div class="flex items-center gap-2">
-        <div i-logos-react />
-        React Hook Form
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card color="purple" icon="i-carbon-document" title="Form Libraries" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-logos-react', label: 'TanStack Form' },
+      { icon: 'i-logos-vue', label: 'Formwerk' },
+      { icon: 'i-logos-vue', label: 'Veevalidate' },
+      { icon: 'i-logos-vue', label: 'Regle' },
+      { icon: 'i-devicon-svelte', label: 'Superforms' },
+      { icon: 'i-logos-react', label: 'React Hook Form' }
+    ]" />
+  </Card>
 
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-carbon-application class="text-xl" />
-      UI Frameworks
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-logos-qwik />
-        Qwik
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-nuxt-icon />
-        Nuxt UI
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-deno />
-        Mage
-      </div>
-       <div class="flex items-center gap-2">
-        <div i-simple-icons-primevue />
-        Primevue
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-simple-icons-shadcnui />
-        Shadcn
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-simple-icons-shadcnui />
-        Shadcn-vue
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-react />
-        renoun
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue />
-        Nuxt Content
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-astro />
-        Astro Content
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card color="green" icon="i-carbon-application" title="UI Frameworks" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-logos-qwik', label: 'Qwik' },
+      { icon: 'i-logos-nuxt-icon', label: 'Nuxt UI' },
+      { icon: 'i-logos-deno', label: 'Mage' },
+      { icon: 'i-simple-icons-primevue', label: 'Primevue' },
+      { icon: 'i-simple-icons-shadcnui', label: 'Shadcn' },
+      { icon: 'i-simple-icons-shadcnui', label: 'Shadcn-vue' },
+      { icon: 'i-logos-react', label: 'renoun' },
+      { icon: 'i-logos-vue', label: 'Nuxt Content' },
+      { icon: 'i-devicon-astro', label: 'Astro Content' }
+    ]" />
+  </Card>
 
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-carbon-http class="text-xl" />
-      HTTP Clients
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-carbon-data-base />
-        upfetch
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-carbon-data-base />
-        rest-client
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-carbon-data-base />
-        better-fetch
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-carbon-data-base />
-        make-service
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card color="yellow" icon="i-carbon-http" title="HTTP Clients" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-carbon-data-base', label: 'upfetch' },
+      { icon: 'i-carbon-data-base', label: 'rest-client' },
+      { icon: 'i-carbon-data-base', label: 'better-fetch' },
+      { icon: 'i-carbon-data-base', label: 'make-service' }
+    ]" />
+  </Card>
 
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-carbon-tools class="text-xl" />
-      Utilities
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-devicon-typescript />
-        T3 Env
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-react />
-        cachified
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-ph:upload-duotone />
-        UploadThing
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-typescript />
-        OpenAuth
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-faker />
-        zod-schema-faker
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card color="red" icon="i-carbon-tools" title="Utilities" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-devicon-typescript', label: 'T3 Env' },
+      { icon: 'i-devicon-react', label: 'cachified' },
+      { icon: 'i-ph:upload-duotone', label: 'UploadThing' },
+      { icon: 'i-devicon-typescript', label: 'OpenAuth' },
+      { icon: 'i-logos-faker', label: 'zod-schema-faker' }
+    ]" />
+  </Card>
 
-  <div class="p-4 border rounded-lg" v-click>
-    <div class="font-bold mb-2 flex items-center gap-2">
-      <div i-ph-flow-arrow-duotone class="text-xl" />
-      Routing
-    </div>
-    <div class="space-y-2 text-sm opacity-75">
-      <div class="flex items-center gap-2">
-        <div i-logos-react />
-        TanStack Router
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-devicon-typescript class="text-lg h-5 w-5" />
-        call-api
-      </div>
-      <div class="flex items-center gap-2">
-        <div i-logos-vue />
-        Kitbag
-      </div>
-      <div class="flex items-center gap-2 opacity-50">
-       and more...
-      </div>
-    </div>
-  </div>
+  <Card color="indigo" icon="i-ph-flow-arrow-duotone" title="Routing" v-click>
+    <IconList class="text-sm" :items="[
+      { icon: 'i-logos-react', label: 'TanStack Router' },
+      { icon: 'i-devicon-typescript', label: 'call-api' },
+      { icon: 'i-logos-vue', label: 'Kitbag' }
+    ]" />
+  </Card>
 </div>
 
 <!--
-The ecosystem support for standard schemas is extensive. From API frameworks like tRPC and Hono, to form libraries like TanStack Form and React Hook Form, to UI frameworks like Qwik and Nuxt UI. HTTP clients, utilities, and routing solutions all support standard schemas. This means you can use the same schema definition across your entire stack, ensuring type safety and consistency throughout your application.
+The tooling ecosystem around Zod and standard schemas is remarkable. From API frameworks to form libraries, UI components to testing utilities - there's robust support across the JavaScript ecosystem. This means you're not just adopting a validation library - you're plugging into a complete ecosystem of tools and best practices. Whether you're building APIs with tRPC, forms with React Hook Form, or generating mock data for tests, there's a tool that integrates seamlessly with your schema definitions.
 -->
-
----
-layout: bullets
-themeColor: indigo
----
-
-# Tools to Accelerate Adoption
-
-- Code generators for scaffolding Zod schemas  
-- ESLint plugins to discourage overuse of `as` type casts  
-- Git hooks to ensure schemas remain up-to-date  
 
 ---
 themeColor: yellow
@@ -1376,7 +1555,7 @@ class: flex justify-center items-center
 <div class="relative w-full">
   <qr-code class="absolute top-0 right-0" text="https://github.com/josephanson/demo-devworld-2025" error-level="H" :scale="5" />
 
-# Live Demo 🚀
+# [Live]{.color-yellow-200} Demo 🚀
 
 <div class="flex justify-between mb-8">
   <div>
@@ -1402,24 +1581,33 @@ class: flex justify-center items-center
     </div>
     <div class="node">
       <div i-logos-google-gemini class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-xs">Vercel AI with Browser basedGemini</div>
+      <div class="text-xs">Vercel AI with Chrome based Gemini</div>
     </div>
   </div>
 
   <!-- Validation points -->
   <div class="grid grid-cols-3 gap-4 mt-8">
-    <div v-click class="p-4 border rounded-lg bg-blue-900/20 text-center">
-      <div class="font-bold">API Validation</div>
-      <div class="text-xs opacity-75">Request / Response safety with Zod</div>
-    </div>
-    <div v-click class="p-4 border rounded-lg bg-purple-900/20 text-center">
-      <div class="font-bold">Frontend Safety</div>
-      <div class="text-xs opacity-75">Form validation with Zod</div>
-    </div>
-    <div v-click class="p-4 border rounded-lg bg-green-900/20 text-center">
-      <div class="font-bold">Data Generation</div>
-      <div class="text-xs opacity-75">Generate Data using Zod and AI</div>
-    </div>
+    <Card
+      v-click
+      center
+      color="blue"
+      title="API Validation"
+      subtitle="Request / Response safety with Zod"
+    />
+    <Card
+      v-click
+      center
+      color="purple"
+      title="Frontend Safety"
+      subtitle="Form validation with Zod"
+    />
+    <Card
+      v-click
+      center
+      color="green"
+      title="Data Generation"
+      subtitle="Generate Data using Zod and AI"
+    />
   </div>
 
 </div>
@@ -1442,44 +1630,82 @@ Let me show you how this works in practice. I've prepared a full-stack demo appl
 -->
 
 ---
-layout: bullets
 themeColor: yellow
+layout: center
 ---
 
-# Demo Highlights
+# [What we]{.text-yellow-200} learned
 
-- **Watch Zod** catch malformed data in real-time  
-- **Observe** how errors are surfaced for immediate debugging  
-- **Coordinate** with AI-based data generation under a strict schema  
+<NumberList
+  class="mt-8 gap-x-4 gap-y-0"
+  :cols="2"
+  :features="[
+    {
+      title: 'Powerful & Flexible',
+      description: 'Zod is a powerful and flexible validation library that can be used in a variety of scenarios.'
+    },
+    {
+      title: 'Easy Integration',
+      description: 'Easily introduced into existing codebase with minimal effort.'
+    },
+    {
+      title: 'Incremental Value',
+      description: 'Provides a lot of value, even if you don\'t use it for everything.'
+    },
+    {
+      title: 'Trust Boundaries',
+      description: 'Can be added at any trust boundary in your codebase.'
+    }
+  ]"
+/>
+
+<!--
+Let's recap what we've covered today. We've seen how Zod provides powerful validation capabilities that can be applied across your entire stack. The beauty is in its flexibility - you can start small, maybe just validating API responses, and gradually expand. Each validation point you add brings immediate value, catching potential issues before they become problems. And by focusing on trust boundaries - those points where data enters your system - you get maximum impact for your effort.
+-->
 
 ---
 layout: center
-themeColor: indigo
+themeColor: yellow
 ---
 
-# Key Benefits 📈
+# [Key]{.text-yellow-200} Benefits 📈
 
 <div class="grid grid-cols-2 gap-4 mt-6">
-  <div class="p-4 border rounded-lg bg-green-900/20" v-click>
-    <div class="text-green-400 text-2xl mb-2">⬇️ </div>
-    <div class="font-bold">Fewer Production Bugs</div>
-    <div class=" opacity-75">Runtime validation catches issues pre-deployment</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-blue-900/20" v-click>
-    <div class="text-blue-400 text-2xl mb-2">⏱️ </div>
-    <div class="font-bold">Faster Debugging</div>
-    <div class=" opacity-75">Detailed error paths & validation messages</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-purple-900/20" v-click>
-    <div class="text-purple-400 text-2xl mb-2">✨ </div>
-    <div class="font-bold">DevEx Improvement</div>
-    <div class=" opacity-75">Autocomplete & type safety across boundaries</div>
-  </div>
-  <div class="p-4 border rounded-lg bg-yellow-900/20" v-click>
-    <div class="text-yellow-400 text-2xl mb-2">🔄 1:1</div>
-    <div class="font-bold">Schema Parity</div>
-    <div class=" opacity-75">Single source of truth across all layers</div>
-  </div>
+  <Card
+    v-click
+    color="green"
+    title="Fewer Production Bugs"
+    subtitle="Runtime validation catches issues pre-deployment"
+  >
+    <template #icon>⬇️</template>
+  </Card>
+
+  <Card
+    v-click
+    color="blue"
+    title="Faster Debugging"
+    subtitle="Detailed error paths & validation messages"
+  >
+    <template #icon>⏱️</template>
+  </Card>
+
+  <Card
+    v-click
+    color="purple"
+    title="DevEx Improvement"
+    subtitle="Autocomplete & type safety across boundaries"
+  >
+    <template #icon>✨</template>
+  </Card>
+
+  <Card
+    v-click
+    color="yellow"
+    title="Schema Parity"
+    subtitle="Single source of truth across all layers"
+  >
+    <template #icon> <span class="text-yellow-400">🔄 1:1 </span></template>
+  </Card>
 </div>
 
 <!--
@@ -1487,15 +1713,45 @@ Let's summarize the key benefits of using Zod. Catch issues before they hit prod
 -->
 
 ---
-layout: bullets
-themeColor: indigo
+themeColor: yellow
+layout: center
 ---
 
-# Tips for Adoption
+# [Tips for]{.text-yellow-200} Adoption
 
-- **Incremental** approach: validate one endpoint at a time  
-- **Share** schemas as npm packages for multi-repo synergy  
-- **Automate** with lint rules and CI tests  
+<div class="grid grid-cols-2 gap-4">
+  <Card
+    color="blue"
+    icon="i-ph:steps-duotone"
+    title="Incremental Approach"
+    subtitle="Validate one endpoint at a time, starting with critical paths"
+  />
+
+  <Card
+    color="purple"
+    icon="i-ph:share-network-duotone"
+    title="Share Schemas"
+    subtitle="Create reusable schemas that serve as data models"
+  />
+
+  <Card
+    color="green"
+    icon="i-ph:recycle-duotone"
+    title="Reuse Patterns"
+    subtitle="Use schemas for validation, forms, and data generation"
+  />
+
+  <Card
+    color="yellow"
+    icon="i-ph:code-duotone"
+    title="Generate Assets"
+    subtitle="Auto-generate types, mocks, and API clients from schemas"
+  />
+</div>
+
+<!--
+Let's talk about practical adoption strategies. Start small - pick one critical API endpoint and add validation there. You'll see immediate benefits without overwhelming your team. Share schemas across your codebase - they become your single source of truth for data structures. Reuse these schemas everywhere - forms, validation, even mock data generation. And leverage tools to auto-generate types and API clients from your schemas. This incremental approach makes adoption manageable and shows value quickly.
+-->
 
 ---
 layout: two-cols
@@ -1504,7 +1760,7 @@ growSeed: 14
 themeColor: blue
 ---
 
-# Thank You!
+# [Thank]{.color-blue-200} You!
 
 <div class="mt-8">
   <div class="text-2xl font-bold mb-4">

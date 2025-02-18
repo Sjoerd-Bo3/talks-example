@@ -17,6 +17,7 @@ h1 {
   font-weight: 900 !important;
   margin-bottom: 1rem !important;
   line-height: 0.85 !important;
+  letter-spacing: -0.025em !important;
 }
 
 h2 {
