@@ -9,6 +9,6 @@ export function themeClasses(key: string) {
     card: `border-${key}-500 bg-${key}-900/20`,
     fill: `fill-${key}-500`,
     stroke: `stroke-${key}-500`,
-    gradient: `transition will-change-background bg-gradient-to-b from-${key}-800 via-${key}-900 to-${key}-950`,
+    gradient: `transition will-change-background bg-gradient-to-b from-${key}-900 via-${key}-900 to-${key}-950`,
   }
 }

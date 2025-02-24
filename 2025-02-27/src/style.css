@@ -21,7 +21,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2, 5rem !important;
+  font-size: 2rem !important;
   opacity: 0.9 !important;
 }
 
@@ -33,10 +33,23 @@ h6 {
   font-weight: 700 !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif, sans-serif;
+}
+
 h6 {
   text-transform: initial !important;
   font-weight: 400 !important;
   letter-spacing: 0 !important;
+}
+
+.slidev-layout :not(pre) > code {
+  @apply bg-black/50;
 }
 
 .slidev-layout {
@@ -106,6 +119,58 @@ iframe {
   transition:
     opacity 0.5s ease-in-out,
     transform 0.75s ease-in-out;
+}
+
+@keyframes slide-enter {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 100;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.no-sliding) [slide-enter],
+  html:not(.no-sliding) .slide-enter,
+  html:not(.no-sliding) .slide-enter-content > *:not(:has(.table-of-contents)) {
+    animation: slide-enter 2s both 1;
+    will-change: animation;
+  }
+
+  .slide-enter-content > *:nth-child(1) {
+    animation-delay: 150ms !important;
+  }
+  .slide-enter-content > *:nth-child(2) {
+    animation-delay: 300ms !important;
+  }
+  .slide-enter-content > *:nth-child(3) {
+    animation-delay: 450ms !important;
+  }
+  .slide-enter-content > *:nth-child(4) {
+    animation-delay: 600ms !important;
+  }
+  .slide-enter-content > *:nth-child(5) {
+    animation-delay: 750ms !important;
+  }
+  .slide-enter-content > *:nth-child(6) {
+    animation-delay: 900ms !important;
+  }
+  .slide-enter-content > *:nth-child(7) {
+    animation-delay: 1050ms !important;
+  }
+  .slide-enter-content > *:nth-child(8) {
+    animation-delay: 1200ms !important;
+  }
+  .slide-enter-content > *:nth-child(9) {
+    animation-delay: 1350ms !important;
+  }
+  .slide-enter-content > *:nth-child(10) {
+    animation-delay: 1400ms !important;
+  }
 }
 
 /* Rabit addon */

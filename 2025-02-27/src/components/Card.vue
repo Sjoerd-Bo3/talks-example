@@ -35,7 +35,7 @@ const alignmentClass = computed(() => props.center ? 'items-center' : 'items-sta
     <div v-if="subtitle" class="opacity-75 text-sm">
       {{ subtitle }}
     </div>
-    <div v-if="$slots.default" class="mt-2">
+    <div v-if="$slots.default" class="mt-2 w-full relative">
       <slot />
     </div>
   </div>
