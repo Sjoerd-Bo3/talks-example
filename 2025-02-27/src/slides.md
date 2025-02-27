@@ -71,7 +71,7 @@ growOpacity: 0.3
     icon="i-ph:warning-circle-duotone"
     iconCenter
     title="The Problem"
-    subtitle="Compile-time type safety limitations"
+    subtitle="Limitations of compile-time type safety "
   />
 
   <Card
@@ -81,7 +81,7 @@ growOpacity: 0.3
     icon="i-logos-zod"
     iconCenter
     title="The Solution"
-    subtitle="Runtime validation with Zod"
+    subtitle="Runtime schema validation"
   />
 
   <Card
@@ -485,7 +485,8 @@ We're making promises we can't keep.  Each one is a leap of faith. We're telling
 
 ---
 layout: two-cols-narrow
-class: items-stretch gap-12
+layoutClass: items-center
+class: items-center gap-12
 themeColor: blue
 grow: full
 growSeed: 18
@@ -525,12 +526,12 @@ growOpacity: 0.35
   <Card
     v-click
     color="green"
-    title="The Safety Net"
-    subtitle="Catching Errors Early"
+    title="The Trust Boundary"
+    subtitle="Validating External Data"
     icon="i-ph:shield-check-duotone"
   >
     <div class="opacity-75 text-xs">
-      Runtime validation acts as a safety net, preventing type-related crashes in production
+      We need to validate all incoming data at trust boundaries before it can cause damage
     </div>
   </Card>
 </div>
@@ -643,10 +644,10 @@ growOpacity: 0.35
       description: 'Broken features and unexpected behavior'
     },
     {
-      icon: 'i-ph:lock-duotone',
+      icon: 'i-ph:bug-duotone',
       color: 'text-yellow-400',
-      title: 'Potential security risks',
-      description: 'Vulnerabilities from incorrect data handling'
+      title: 'Hard-to-reproduce issues',
+      description: 'Intermittent bugs that only appear with specific data'
     }
   ]"
 />
@@ -769,7 +770,7 @@ growOpacity: 0.35
   },
   {
     title: 'Early Warning',
-    description: 'Early detection of mismatches, preventing deeper errors'
+    description: 'Early detection of mismatches, allowing quick corrections'
   }
 ]" />
 
@@ -822,11 +823,12 @@ growOpacity: 0.3
 </div>
 
 <!--
-Let's talk solutions. There are several great validation libraries out there, however our focus today will be Zod.
+So what's out there?
+Well there's many different libraries to choice from.
+- Zod, Valibot, Arktype, Joi, Yup
+All these libraries can provide runtime safety in your applications.
 
-Zod stands out for several reasons: it's TypeScript-first, has zero dependencies, an incredibly expressive API, and fantastic ecosystem support.
-
-Recently, went live with Zod in a large enterprise app—it caught 37 type mismatches in the first week, and the team's confidence in the codebase skyrocketed. Let's see it in action—I'll show you some real-world examples.
+[click:6] However due to recent development only 3 of these libraries support Standard Library.
 -->
 
 ---
@@ -871,13 +873,13 @@ growOpacity: 0.4
 </div>
 
 <!--
-Choosing a library that supports Standard Schema is increasingly important as the ecosystem evolves. Created by the minds behind Zod, Valibot, and ArkType, it represents where validation is heading.
+[click] Standard Schema represents a pivotal shift in validation, recently reaching v1 which establishes a Universal Standard that unifies schema validation across the JavaScript ecosystem.
 
-The key advantage is future-proofing your codebase. As more libraries implement the spec, your validation logic becomes portable. You can switch between libraries without rewriting code, and your tools will work consistently across different validation solutions.
+[click] The Collaborative Initiative is creating powerful advantages for developers. By working together Zod, Valibot and Arktype are ensuring your validation logic becomes portable across libraries, future-proofing your codebase.
 
-The community aspect is crucial - as adoption grows, we're seeing more shared tooling, documentation, and best practices. This makes it easier to learn, implement, and maintain validation across projects.
+[click] Ecosystem Integration is a key benefit - Standard Schema is designed for seamless adoption across frameworks and tools, providing a consistent interface that library authors can implement.
 
-Framework creators are also taking notice, with many building Standard Schema support into their tools. This means better integration and a more consistent development experience across the ecosystem.
+[click] The Community-Driven nature means best practices are evolving based on real-world implementation. As adoption grows, we're seeing more shared tooling and documentation that makes validation more accessible across projects.
 -->
 
 ---
@@ -930,7 +932,17 @@ growOpacity: 0.3
 ]" />
 
 <!--
-While there are several validation libraries available, Zod has emerged as a leader for good reasons. Its popularity isn't just about being first - it's about being comprehensive and well-designed. The seamless TypeScript integration means you get excellent IDE support and type inference. The API is intuitive enough that new team members can get started quickly. And perhaps most importantly, it's fast - validation overhead is minimal, making it suitable for production use.
+So lets talk about schema validation and why moving forward the examples will be using zod
+
+[click] First, it's the most popular right now, so this means there's currently more support for zod however later i'm hoping to see more libraries adopt standard schema
+
+[click] For type safety, Zod is unmatched - define your schema once and get perfect TypeScript types automatically inferred, eliminating type/validation duplication.
+
+[click] The developer experience is exceptional - with an intuitive API that reads almost like plain English and excellent documentation that makes onboarding new team members straightforward.
+
+[click] The ecosystem around Zod is rich and growing - from form libraries to API frameworks, the community has built impressive integrations that extend Zod's capabilities.
+
+[click] Beyond just validation, Zod provides powerful functionality for transformations, data generation, and complex business logic - making it a versatile tool for your entire application.
 -->
 
 ---
@@ -1026,11 +1038,11 @@ const userSchema = z.object({
 ```ts {all}{class:'!children:text-[10px]  !children:leading-none'}
 type User = z.infer<typeof UserSchema>
 /* => {
-   name: string,
-   age: number,
-   email?: string,
-   address: { street: string, city: string },
-   role: 'USER' | 'ADMIN'
+  name: string,
+  age: number,
+  email?: string,
+  role: 'USER' | 'ADMIN'
+  address: { street: string, city: string },
 }
 */
 ```
@@ -1038,17 +1050,6 @@ type User = z.infer<typeof UserSchema>
 </Card>
 
 </div>
-
-<!--
-Type inference is one of Zod's most powerful features. Instead of maintaining separate type definitions,
-we can derive them directly from our schemas. This means:
-
-1. No more manual type updates when schemas change
-2. Perfect alignment between runtime validation and compile-time types
-3. Reduced maintenance burden and fewer opportunities for errors
-
-This is especially valuable in larger codebases where keeping types and validation in sync can become challenging.
--->
 
 ---
 themeColor: indigo
@@ -1114,16 +1115,13 @@ return result.data // => Type User
   p{margin: 0 !important;}
 </style>
 
-<!--
-Zod's advanced features allow for complex type definitions and validation patterns. The type inference system ensures your runtime validation stays in sync with your TypeScript types.
--->
-
 ---
 layout: two-cols-narrow
 themeColor: indigo
 grow: left
 growSeed: 30
 growOpacity: 0.4
+class: "!h-[551px]"
 ---
 
 <div class="h-full flex items-center">
@@ -1137,12 +1135,15 @@ growOpacity: 0.4
 ```ts {monaco-run}
 import { z } from 'zod'
 
-const schema = z.object({
-  name: z.string(),
-  age: z.number()
+const recipeSchema = z.object({
+  title: z.string(),
+  cookingTime: z.number(),
 })
 
-const result = schema.safeParse({ name: 'Joseph', age: '31' })
+const result = recipeSchema.safeParse({
+  title: 'Chocolate Cake',
+  cookingTime: '45',
+})
 
 console.log(result)
 ```
@@ -1298,7 +1299,7 @@ async function fetchProduct(id: string): Promise<Product> {
     throw new Error('Invalid product data')
   }
 
-  return result.data
+  return result.data // => Type Product
 }
 ```
 ````
@@ -1306,11 +1307,15 @@ async function fetchProduct(id: string): Promise<Product> {
 </div>
 
 <!--
-Let's dive into how Zod works in practice. We'll start with a simple but real-world example.
+Let's dive into how Zod works in practice.
 
-First, look at our TypeScript interface—clean, precise, everything perfectly typed. This is what our code expects. Now, here's what actually comes from the API: IDs as numbers instead of strings, amounts as strings instead of numbers, invalid enum values, malformed dates, negative values where they should be positive.
+First let's look at a Typescript type we're looking to cover
 
-This exact scenario happened to a client—the bug made it to production, took down their payment processing for 2 hours, and cost them thousands in lost revenue. But we can prevent all of this. With runtime validation. Let me show you how.
+[click] Now let's look how we can create that same type as a Schema, you can see it's almost identical
+
+[click] The cool thing here is we can add some validations and transformations quite easily to the new schema
+
+[click] Now using some zod magic we can remove the type we had and just infer the type instead, so now in a couple more lines we get the same functionality.
 -->
 
 ---
@@ -1371,7 +1376,6 @@ growOpacity: 0.3
 - **Validate API Bodies** with `nitro`
 - **Mock Generation** with libraries like `zod-schema-faker`
 - **Generate Structured Data** with `vercel ai`
-- **Validate LocalStorage Data**
 
 </v-clicks>
 
@@ -1453,18 +1457,6 @@ const user = await generateObject({
   schema: userSchema,
   prompt: 'Generate a user with a interesting name and email'
 })
-```
-
-```ts
-// Example: Validate LocalStorage User Data
-import { userSchema } from './'
-import { z } from 'zod'
-
-// Safe set to localStorage
-function setStoredUser(user) {
-  const validated = userSchema.parse(user)
-  localStorage.setItem('userData', JSON.stringify(validated))
-}
 ```
 ````
 
@@ -1669,7 +1661,7 @@ growOpacity: 0.3
   <div v-click="4" class="phase-card">
     <div class="phase-number">4</div>
     <div class="phase-title">Generate Assets</div>
-    <div class="phase-desc">Auto-create types, mocks, and clients</div>
+    <div class="phase-desc">Auto-create mocks and test data</div>
   </div>
 </div>
 
@@ -1769,12 +1761,13 @@ growSeed: 20
 growOpacity: 0.3
 grow: full
 class: flex justify-center items-center
+disabled: true
 ---
 
 <div class="relative w-full">
   <qr-code class="absolute top-0 right-0" text="https://github.com/josephanson/demo-devworld-2025" error-level="H" :scale="5" />
 
-# [Shared]{.color-teal-200} Demo 🚀
+# [Example]{.color-teal-200} Demo 🚀
 
 <div class="flex justify-between mb-8">
   <div>
@@ -1870,7 +1863,7 @@ growOpacity: 0.35
   <h4 class="opacity-75">Slides, Demo Application & Resources</h4>
 </div>
 
-  <qr-code text="https://josephanson.com/talks/beyond-type-checking" error-level="H" :scale="2"/>
+  <qr-code text="https://josephanson.com/talks/beyond-type-checking" error-level="H" :scale="4"/>
 
   </div>
 
