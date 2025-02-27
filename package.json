@@ -11,7 +11,8 @@
     "export:all": "pnpm -r export"
   },
   "dependencies": {
-    "slidev-addon-rabbit": "^0.4.0"
+    "slidev-addon-rabbit": "^0.4.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.3.0",

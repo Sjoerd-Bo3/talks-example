@@ -6,6 +6,8 @@ colorSchema: dark
 transition: fade-slide-up
 mdc: true
 growSeed: 4
+grow: right
+growOpacity: 0.4
 title: Beyond Type Checking
 class: text-center
 themeColor: blue
@@ -26,6 +28,9 @@ rabbit:
 
 ---
 layout: intro
+grow: left
+growSeed: 6
+growOpacity: 0.35
 ---
 
 <div class="relative pb-8">
@@ -51,6 +56,9 @@ Today, we'll bridge that gap together and learn to make [click] bulletproof appl
 layout: center
 class: text-center
 themeColor: blue
+grow: bottom
+growSeed: 12
+growOpacity: 0.3
 ---
 
 # Today's Journey
@@ -190,6 +198,9 @@ Quick show of hands—who's been bitten by runtime type errors? Those hands? Tha
 ---
 layout: center
 themeColor: blue
+grow: top
+growSeed: 10
+growOpacity: 0.4
 ---
 
 # [Where Things]{.color-blue-200} Go Wrong
@@ -228,6 +239,9 @@ These are the cracks where bugs slip through. Runtime validation is the solution
 layout: two-cols
 class: items-stretch gap-8
 themeColor: blue
+grow: full
+growSeed: 16
+growOpacity: 0.25
 ---
 
 <h1 class="!mb-0"><span class="color-blue-200">The</span> Trust Boundary</h1>
@@ -471,8 +485,11 @@ We're making promises we can't keep.  Each one is a leap of faith. We're telling
 
 ---
 layout: two-cols-narrow
+class: items-stretch gap-12
 themeColor: blue
-layoutClass: items-center
+grow: full
+growSeed: 18
+growOpacity: 0.35
 ---
 
 # [Why This]{.color-blue-200} <br> Matters
@@ -520,7 +537,7 @@ layoutClass: items-center
 
 <!--
 [click] Let's talk about why this matters. First, the cost of assumptions - when we assume our data matches our types, we're setting ourselves up for silent failures that have loud consequences.
- 
+
 [click] Second, there's this illusion of safety that TypeScript provides, compile time safety doesn't equal runtime safet. We feel protected, but those compile-time checks disappear at runtime, leaving critical gaps in our validation strategy.
 
 [click] Finally, runtime validation acts as our safety net. It catches errors early, before they can cascade into larger problems in production.
@@ -532,6 +549,9 @@ These aren't abstract concerns - I've seen teams lose days of productivity and s
 themeColor: cyan
 layout: two-cols-narrow
 layoutClass: items-center
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # [The Runtime Validation]{.color-cyan-200} Gap
@@ -593,6 +613,9 @@ We had no users reporting this issue, however because we were validating the dat
 layout: two-cols
 themeColor: cyan
 layoutClass: items-center
+grow: full
+growSeed: 14
+growOpacity: 0.35
 ---
 
 # [Real-World]{.color-cyan-200} Impact
@@ -703,13 +726,15 @@ Let's examine the real-world impact of TypeScript's limitations.
 
 [click] When we try to use this data, we encounter serious problems. Comparing a string "25" with a number 18 produces unexpected results. Checking for an "ADMIN" role fails because we received "GUEST" instead. And treating the string "true" as a boolean can lead to subtle logic errors.
 
-
 This is precisely why we need runtime validation to complement TypeScript's compile-time checks.
 -->
 
 ---
 layout: statement
 themeColor: indigo
+grow: right
+growSeed: 24
+growOpacity: 0.4
 ---
 
 <h1> <span class="color-indigo-200">From Blind Faith to</span> <br> <span v-mark.indigo.highlight.delay600="1" color-white> Bulletproof Validation </span> </h1>
@@ -718,12 +743,14 @@ themeColor: indigo
 
 <!--
 Let me show you how we can move from blind faith in our types to bulletproof validation through runtime checks. This shift is essential for building truly reliable applications.
-
 -->
 
 ---
 layout: center
 themeColor: indigo
+grow: top
+growSeed: 26
+growOpacity: 0.35
 ---
 
 # [What is]{.color-indigo-200} Runtime Validation?
@@ -747,7 +774,6 @@ themeColor: indigo
 ]" />
 
 <!--
-
 [click] First, runtime validation is fundamentally about verification. Instead of blindly accepting data, we actively check its shape, types, and constraints at the moment it enters our application. This prevents type-related bugs from spreading through our system.
 
 [click] Second, it creates essential guard rails for external data. APIs, databases, user inputs - all these external sources need validation before we can trust them in our core logic.
@@ -760,8 +786,12 @@ It's like having a security guard checking IDs at every entrance of your applica
 ---
 layout: iframe-right
 url: https://standardschema.dev/
+class: px-0
 themeColor: indigo
 scale: 0.6
+grow: full
+growSeed: 28
+growOpacity: 0.3
 ---
 
 # [What's]{.color-indigo-200} <br> Out There?
@@ -802,6 +832,9 @@ Recently, went live with Zod in a large enterprise app—it caught 37 type misma
 ---
 layout: center
 themeColor: indigo
+grow: left
+growSeed: 30
+growOpacity: 0.4
 ---
 
 # [What is]{.color-indigo-200} Standard Schema?
@@ -851,6 +884,9 @@ Framework creators are also taking notice, with many building Standard Schema su
 themeColor: indigo
 layout: two-cols-narrow
 layoutClass: items-center
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # Schema Validation {.text-indigo-200}
@@ -900,6 +936,9 @@ While there are several validation libraries available, Zod has emerged as a lea
 ---
 themeColor: indigo
 layout: two-cols
+grow: full
+growSeed: 14
+growOpacity: 0.35
 ---
 
 # [Zod]{.text-indigo-200} <br> Essentials
@@ -1013,6 +1052,9 @@ This is especially valuable in larger codebases where keeping types and validati
 
 ---
 themeColor: indigo
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # [Zod]{.text-indigo-200} <br> Validation
@@ -1077,8 +1119,40 @@ Zod's advanced features allow for complex type definitions and validation patter
 -->
 
 ---
+layout: two-cols-narrow
+themeColor: indigo
+grow: left
+growSeed: 30
+growOpacity: 0.4
+---
+
+<div class="h-full flex items-center">
+
+# [Zod]{.color-indigo-200} Errors
+
+</div>
+
+::right::
+
+```ts {monaco-run}
+import { z } from 'zod'
+
+const schema = z.object({
+  name: z.string(),
+  age: z.number()
+})
+
+const result = schema.safeParse({ name: 'Joseph', age: '31' })
+
+console.log(result)
+```
+
+---
 themeColor: indigo
 layout: two-cols-header
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # [Zod]{.text-indigo-200} In Practice
@@ -1223,7 +1297,7 @@ async function fetchProduct(id: string): Promise<Product> {
     )
     throw new Error('Invalid product data')
   }
-  
+
   return result.data
 }
 ```
@@ -1242,6 +1316,9 @@ This exact scenario happened to a client—the bug made it to production, took d
 ---
 layout: center
 themeColor: indigo
+grow: top
+growSeed: 26
+growOpacity: 0.35
 ---
 
 # [Schema-Driven]{.color-indigo-200} Types
@@ -1279,6 +1356,9 @@ This is especially valuable in larger codebases where keeping types and validati
 ---
 layout: two-cols-narrow
 themeColor: indigo
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # [Beyond]{.color-indigo-200} Basics
@@ -1287,9 +1367,9 @@ themeColor: indigo
 
 <v-clicks at="2">
 
+- **Validate Form Data** with `Veevalidate`
 - **Validate API Bodies** with `nitro`
 - **Mock Generation** with libraries like `zod-schema-faker`
-- **Form Builders** hooking into real-time validation with `Veevalidate`
 - **Generate Structured Data** with `vercel ai`
 - **Validate LocalStorage Data**
 
@@ -1315,29 +1395,6 @@ export const userSchema = z.object({
 <v-click at="2">
 
 ````md magic-move {at:3}
-```ts
-// Example: Validate API Bodies with Nitro
-import { userSchema } from './'
-import { z } from 'zod'
-import { defineEventHandler, readValidatedBody } from "h3";
-
-return default defineEventHandler(async (event) => {
-  const query = await readValidatedBody(event, userSchema.parse);
-
-  return `Hello ${query.name}! This is your email ${query.email}.`;
-})
-```
-
-```ts
-// Example: Generate mock data
-import { userSchema } from './'
-import { z } from 'zod'
-import { fake } from 'zod-schema-faker'
-
-// Generate a mock user
-const mockUser = fake(userSchema)
-```
-
 ```vue
 // Example: Form Validation with Veevalidate
 <script setup>
@@ -1359,7 +1416,29 @@ const [email, emailAttrs] = defineField('email');
   <input v-model="email" v-bind="emailAttrs" />
   <div>{{ errors.email }}</div>
 </template>
+```
 
+```ts
+// Example: Validate API Bodies with Nitro
+import { userSchema } from './'
+import { z } from 'zod'
+import { defineEventHandler, readValidatedBody } from "h3";
+
+return default defineEventHandler(async (event) => {
+  const query = await readValidatedBody(event, userSchema.parse);
+
+  return `Hello ${query.name}! This is your email ${query.email}.`;
+})
+```
+
+```ts
+// Example: Generate mock data
+import { userSchema } from './'
+import { z } from 'zod'
+import { fake } from 'zod-schema-faker'
+
+// Generate a mock user
+const mockUser = fake(userSchema)
 ```
 
 ```ts
@@ -1424,68 +1503,9 @@ Let's explore how Zod integrates with various tools and frameworks in the ecosys
 
 ---
 themeColor: indigo
-gridClass: items-center flex-grow-1 pb-20
-layoutClass: flex flex-col
----
-
-# Ecosystem Integration
-
-<div class="grid grid-cols-2 gap-4 mt-8">
-   <Card
-    v-click
-    icon="i-ph-number-one-duotone"
-    color="green"
-    title="Single Source of Truth"
-    subtitle="Zod schemas can be used in the frontend, backend, and generated from your database schema."
-  />
-
- <Card
-    v-click
-    icon="i-solar-clipboard-check-bold-duotone"
-    color="blue"
-    title="API Validation"
-    subtitle="Seamless integration with frameworks like Express, Fastify, Nitro, Hono to validate incoming requests."
-  />
-
-  <Card
-    v-click
-    icon="i-ph-newspaper-clipping-duotone"
-    color="purple"
-    title="Frontend Safety"
-    subtitle="Type-safe forms with React Hook Form, FormKit, Veevalidate, Shadcn, etc."
-  />
-
-  <Card
-    v-click
-    icon="i-ph-code-duotone"
-    color="yellow"
-    title="Schema Transformations"
-    subtitle="Transform, parse and validate data between different formats and structures."
-  />
-
-  <Card
-    v-click
-    icon="i-solar-database-bold-duotone"
-    color="red"
-    title="Generate Mocks from Schemas"
-    subtitle="Generate realistic mock data for testing and development."
-  />
-
-  <Card
-    v-click
-    icon="i-ph-head-circuit-duotone"
-    color="indigo"
-    title="AI Structured Data Generation"
-    subtitle="Use schemas to generate structured data with AI."
-  />
-</div>
-
-<!--
-Zod works with all major javascript frameworks—validate incoming requests before they hit your business logic. It's a single source of truth—frontend, backend, database, all in sync. Type-safe forms are a game changer—no more guessing about form data types. Generate type-safe API clients that match your API exactly—no more manual type definitions. Generate realistic mock data from your schemas—great for development and testing. Generate Zod schemas from your database—keep your types in sync with your data. Zod isn't just a validation library—it's a complete type safety ecosystem.
--->
-
----
-themeColor: indigo
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
 # [Tooling]{.color-indigo-200} Support
@@ -1567,149 +1587,194 @@ The tooling ecosystem around Zod and standard schemas is remarkable. From API fr
 -->
 
 ---
+themeColor: teal
 layout: center
-themeColor: yellow
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
-# [Key]{.text-yellow-200} Benefits
+# [Key]{.color-teal-200} Benefits
 
-<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="grid grid-cols-1 gap-4 mt-6">
   <Card
     v-click
     color="green"
-    title="Fewer Production Bugs"
-    subtitle="Runtime validation catches issues pre-deployment"
+    title="Bulletproof Applications"
+    subtitle="Catch errors at your system's boundaries"
   >
-    <template #icon>⬇️</template>
+    <template #icon>🛡️</template>
   </Card>
 
   <Card
     v-click
     color="blue"
-    title="Faster Debugging"
-    subtitle="Detailed error paths & validation messages"
+    title="Developer Confidence"
+    subtitle="Know exactly when and how your data fails"
   >
-    <template #icon>⏱️</template>
+    <template #icon>⚡</template>
   </Card>
 
   <Card
     v-click
     color="purple"
-    title="DevEx Improvement"
-    subtitle="Autocomplete & type safety across boundaries"
+    title="Single Source of Truth"
+    subtitle="Schema-driven types across your entire stack"
   >
-    <template #icon>✨</template>
-  </Card>
-
-  <Card
-    v-click
-    color="yellow"
-    title="Schema Parity"
-    subtitle="Single source of truth across all layers"
-  >
-    <template #icon> <span class="text-yellow-400">🔄 1:1 </span></template>
+    <template #icon>🔄</template>
   </Card>
 </div>
 
 <!--
-Let's summarize the key benefits of using Zod. Catch issues before they hit production—runtime validation catches issues pre-deployment. Pinpoint exact validation failures—detailed error paths and messages. Autocomplete and type safety everywhere—developer experience improvement. One source of truth across your stack—schema parity. One team reduced production bugs by 60%—most importantly, developer confidence skyrocketed.
+Let's summarize the key benefits of runtime validation:
+
+First, truly bulletproof applications. By validating data at trust boundaries, you catch errors before they propagate deeper into your system.
+
+Second, dramatically improved developer confidence. You'll know exactly when, where, and how your data fails validation, with clear error messages that pinpoint the issue.
+
+Finally, you establish a single source of truth. Your schemas define both runtime validation and static types, eliminating discrepancies between what you expect and what you get.
+
+These benefits combine to create more reliable applications, happier developers, and better user experiences.
 -->
 
 ---
-themeColor: yellow
+themeColor: teal
 layout: center
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
-# [Adoption]{.text-yellow-200} Strategy
+# [4-Step]{.text-teal-200} Adoption Plan
 
-<div class="flex flex-col gap-6 mt-6">
-  <div class="grid grid-cols-2 gap-4">
-    <Card
-      v-click
-      color="blue"
-      icon="i-ph:steps-duotone"
-      title="Incremental Approach"
-      subtitle="Validate one endpoint at a time, starting with critical paths"
-    />
-     <Card
-      v-click
-      color="purple"
-      icon="i-ph:puzzle-piece-duotone"
-      title="Schema Composition"
-      subtitle="Build a library of reusable schema components for consistency"
-    />
-    <Card
-      v-click
-      color="green"
-      icon="i-ph:share-network-duotone"
-      title="Reuse Schemas"
-      subtitle="Create reusable schemas that serve as data models"
-    />
-    <Card
-      v-click
-      color="yellow"
-      icon="i-ph:code-duotone"
-      title="Generate Assets"
-      subtitle="Auto-generate types, mocks, and API clients from schemas"
-    />
+<div class="flex gap-4 mt-8 justify-center">
+  <div v-click class="phase-card">
+    <div class="phase-number">1</div>
+    <div class="phase-title">Start Small</div>
+    <div class="phase-desc">Begin with one critical API endpoint</div>
+  </div>
+  <div class="arrow-right" v-click>→</div>
+  <div v-click="2" class="phase-card">
+    <div class="phase-number">2</div>
+    <div class="phase-title">Build Library</div>
+    <div class="phase-desc">Create reusable schema components</div>
+  </div>
+  <div class="arrow-right" v-click>→</div>
+  <div v-click="3" class="phase-card">
+    <div class="phase-number">3</div>
+    <div class="phase-title">Expand Reach</div>
+    <div class="phase-desc">Add validation to all trust boundaries</div>
+  </div>
+  <div class="arrow-right" v-click>→</div>
+  <div v-click="4" class="phase-card">
+    <div class="phase-number">4</div>
+    <div class="phase-title">Generate Assets</div>
+    <div class="phase-desc">Auto-create types, mocks, and clients</div>
   </div>
 </div>
 
+<style>
+.phase-card {
+  @apply p-2 py-8 rounded-lg flex flex-col items-center w-40 bg-teal-500/10 border border-teal-500/30;
+}
+.phase-number {
+  @apply text-3xl font-bold text-teal-400 mb-2;
+}
+.phase-title {
+  @apply text-lg font-semibold text-center;
+}
+.phase-desc {
+  @apply text-xs opacity-75 text-center;
+}
+.arrow-right {
+  @apply text-2xl self-center text-teal-500/50;
+}
+</style>
+
 <!--
-Let's talk about practical adoption strategies. Start small - pick one critical API endpoint and add validation there. You'll see immediate benefits without overwhelming your team. Share schemas across your codebase - they become your single source of truth for data structures. Reuse these schemas everywhere - forms, validation, even mock data generation. And leverage tools to auto-generate types and API clients from your schemas. This incremental approach makes adoption manageable and shows value quickly.
+Here's a practical, four-step approach to adopting runtime validation in your projects:
+
+Step 1: Start small. Pick one critical API endpoint and add validation there. You'll see immediate benefits without overwhelming your team.
+
+Step 2: Build a library of reusable schemas for common data structures. This creates consistency and reduces duplication.
+
+Step 3: Expand to all trust boundaries - API responses, form inputs, localStorage, query parameters - anywhere data enters your system.
+
+Step 4: Leverage your schemas to generate types, mock data, and API clients automatically.
+
+This incremental approach allows you to demonstrate value quickly while building momentum toward comprehensive validation.
 -->
 
 ---
-themeColor: yellow
-layout: two-cols
-layoutClass: flex justify-center items-center h-full !gap-24
+themeColor: teal
+layout: center
+grow: bottom
+growSeed: 22
+growOpacity: 0.3
 ---
 
-# [What we]{.text-yellow-200} learned
+# [Key]{.text-teal-200} Takeaways
 
-::right::
+<div class="grid grid-cols-2 gap-6 mt-8">
+  <Card
+    v-click
+    icon="i-ph:check-circle-duotone"
+    color="yellow"
+    title="TypeScript alone isn't enough"
+    subtitle="Runtime validation is essential"
+  />
 
-<NumberList
-  class="gap-12"
-  :cols="2"
-  :features="[
-    {
-      title: 'Powerful & Flexible',
-      description: 'Zod is a powerful and flexible validation library that can be used in a variety of scenarios.'
-    },
-    {
-      title: 'Easy Integration',
-      description: 'Easily introduced into existing codebase with minimal effort.'
-    },
-    {
-      title: 'Incremental Value',
-      description: 'Provides a lot of value, even if you don\'t use it for everything.'
-    },
-    {
-      title: 'Trust Boundaries',
-      description: 'Can be added at any trust boundary in your codebase.'
-    }
-  ]"
-/>
+  <Card
+    v-click
+    icon="i-ph:shield-check-duotone"
+    color="green"
+    title="Validate at trust boundaries"
+    subtitle="Prevent runtime errors at data entry points"
+  />
+
+  <Card
+    v-click
+    icon="i-logos-zod"
+    color="purple"
+    title="Schemas for validation"
+    subtitle="Powerful, flexible with excellent TypeScript integration"
+  />
+
+  <Card
+    v-click
+    icon="i-ph:arrows-out-duotone"
+    color="blue"
+    title="Incremental adoption"
+    subtitle="Start small, prove value, expand systematically"
+  />
+</div>
 
 <!--
-Let's recap what we've covered today. We've seen how Zod provides powerful validation capabilities that can be applied across your entire stack. The beauty is in its flexibility - you can start small, maybe just validating API responses, and gradually expand. Each validation point you add brings immediate value, catching potential issues before they become problems. And by focusing on trust boundaries - those points where data enters your system - you get maximum impact for your effort.
+As we wrap up, here are the essential takeaways from our journey beyond type checking:
+
+First, recognize that TypeScript alone can't protect you at runtime - the type information disappears during compilation.
+
+Second, identify and protect your trust boundaries - those points where external data enters your system - with runtime validation.
+
+Third, leverage Zod's powerful schema definitions and automatic type inference to maintain a single source of truth.
+
+Finally, don't feel overwhelmed - start small, prove the value, and expand systematically.
+
+Runtime validation isn't just a nice-to-have - it's an essential part of building truly bulletproof TypeScript applications.
 -->
 
-
 ---
-themeColor: yellow
+themeColor: teal
 growSeed: 20
 growOpacity: 0.3
 grow: full
 class: flex justify-center items-center
-disabled: true
 ---
 
 <div class="relative w-full">
   <qr-code class="absolute top-0 right-0" text="https://github.com/josephanson/demo-devworld-2025" error-level="H" :scale="5" />
 
-# [Live]{.color-yellow-200} Demo 🚀
+# [Shared]{.color-teal-200} Demo 🚀
 
 <div class="flex justify-between mb-8">
   <div>
@@ -1723,19 +1788,19 @@ disabled: true
   <div class="flex items-start gap-4 mb-8 text-center">
     <div class="node">
       <div i-logos-nuxt-icon class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-xs">Nuxt</div>
+      <div class="text-xs w-full text-center">Nuxt</div>
     </div>
     <div class="node">
       <div i-unjs-nitro class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-xs">Nitro</div>
+      <div class="text-xs w-full text-center">Nitro</div>
     </div>
     <div class="node">
       <div i-logos-zod class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-xs">Zod</div>
+      <div class="text-xs w-full text-center">Zod</div>
     </div>
     <div class="node">
       <div i-logos-google-gemini class="text-4xl mb-2 w-10 h-10" />
-      <div class="text-xs">Vercel AI with Chrome based Gemini</div>
+      <div class="text-xs">Chrome based Gemini</div>
     </div>
   </div>
 
@@ -1769,7 +1834,7 @@ disabled: true
 
 <style>
 .node {
-  @apply flex flex-col items-center w-16
+  @apply flex flex-col items-center
 }
 .arrow {
   @apply text-4xl self-center text-white/30;
@@ -1783,12 +1848,13 @@ disabled: true
 Let me show you how this works in practice. I've prepared a full-stack demo application—you can follow along with the QR code. Starting with our source of truth—the database schema. Auto-generated Zod schemas from the database. Full request/response validation at the API layer. End-to-end type safety in the frontend. Watch how types flow from DB to API. See how we catch invalid requests. Experience real-time form validation. The slides and demo code are available at the URL shown—scan the QR code to get started right away. Feel free to reach out with questions.
 -->
 
-
 ---
 layout: two-cols
 class: flex items-center my-auto
 growSeed: 14
 themeColor: blue
+grow: full
+growOpacity: 0.35
 ---
 
 # [Thank]{.color-blue-200} You!
