@@ -28,10 +28,8 @@ FROM nginx:alpine
 # Copy static files from builder stage to nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy the config generator script (ensure it exists in the source)
+# Copy the nginx configuration file
 COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
-
-RUN echo "nginx.conf: $(cat /nginx.conf)"
 
 # Expose port 80
 EXPOSE 80
