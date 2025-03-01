@@ -12,8 +12,8 @@ services:
       - "8080:80"
     networks:
       - slidev-network
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    # The nginx.conf will be copied during the build process in the Dockerfile
+    # No need to mount it as a volume
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:80"]
       interval: 30s
